@@ -1,4 +1,135 @@
 body {
-  background-color: lightblue;
+  font-family: 'Droid Serif', serif;
+  font-size: 14px;
+  color: #2f2f2f;
+  background-color: #f9f7f1;
   height: 100%;
+  text-align: center;
+  overflow-x:hidden;
+}
+
+header {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 80px;
+  text-transform: uppercase;
+  display: inline-block;
+  line-height: 72px;
+  margin: 50px 0px 50px 0px;
+}
+
+.subsection {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 25px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+input {
+  margin-top: 40px;
+}
+
+.subhead {
+  text-align: center;
+  text-transform: uppercase;
+  border-bottom: 2px solid #2f2f2f;
+  border-top: 2px solid #2f2f2f;
+  padding: 12px 0 12px 0;
+  position: relative;
+}
+
+.boxA {
+  float: left;
+  position: relative;
+  width: 12%;
+  left: 10px;
+  border: 3px double #2f2f2f;
+  padding: 10px 15px 10px 15px;
+  margin: 50px 50px 50px 30px;
+  display: inline-block;
+  font-size: 25px;
+}
+
+.boxB {
+  float: right;
+  position: relative;
+  width: 15%;
+  left: 10px;
+  border: 3px double #2f2f2f;
+  padding: 10px 15px 10px 15px;
+  margin: 30px 50px 0px 30px;
+  display: inline-block;
+  font-size: 19px;
+}
+
+#print {
+  position: relative;
+  width: 12%;
+  left: 10px;
+  border: 3px double #2f2f2f;
+  padding: 10px 15px 10px 15px;
+  display: inline-block;
+  font-size: 25px;
+}
+
+.content {
+  font-size: 0;
+  line-height: 0;
+  word-spacing: -.31em;
+  display: inline-block;
+  margin: 40px 2% 40px 2%;
+  width: 96%;
+}
+
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 90%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 25px;
+  cursor: pointer;
+  background: #db9b22;
+}
+
+.collumn:hover .customtooltip {
+  display: block
+}
+
+.customtooltip {
+  display: none;
+  background: #C8C8C8;
+  padding: 10px;
+  position: absolute;
+  z-index: 1000;
+  width: 200px;
+  line-height: normal;
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 20px;
+  height: auto;
+}
+
+.exampleSlider {
+  background: linear-gradient(to right, #d3d3d3 0%, #d3d3d3 25%, #54a16b 25%, #54a16b 75%, #d3d3d3 75%, #d3d3d3 100%);
 }

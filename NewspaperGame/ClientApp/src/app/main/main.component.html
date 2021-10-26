@@ -1,3 +1,66 @@
 <body>
-<p>main works!</p>
+  <div>
+    <button class="boxA" (click)="viewRules(rulesModal)">Rules</button>
+    <header>Name of Newspaper</header>
+    <div class="boxB" style="position: relative; float:right; font-size=">
+      Local Popularity: <b>50%</b>
+      National Popularity: <b>20%</b>
+      Journalism Rating: <b>B+</b>
+    </div>
+  </div>
+
+  <div class="subhead">York, MA - Thursday August 30, 1978</div>
+
+  <div class="subsection">Budget Remaining: ${{budgetRemaining}}</div>
+
+  <div class="row content">
+    <span id="valBox"></span>
+    <div class="collumn" id="slider0" style="float: left; width: 50%;">
+      <div class="subsection">Journalism - ${{costs[0]}}</div>
+      <input type="range" min="1" max="100" [(ngModel)]="sliders[0]" class="slider" (input)="sliderChange(0)">
+      <div class="customtooltip">{{getTooltipText(0)}}</div>
+    </div>
+    <div class="collumn" id="slider1" style="float: right; width: 50%;">
+      <div class="subsection">Content - ${{costs[1]}}</div>
+      <input type="range" min="1" max="100" [(ngModel)]="sliders[1]" class="slider" (input)="sliderChange(1)">
+      <div class="customtooltip">{{getTooltipText(1)}}</div>
+    </div>
+  </div>
+
+  <div class="row content">
+    <div class="collumn" id="slider2" style="float: left; width: 50%;">
+      <div class="subsection">Tone - ${{costs[2]}}</div>
+      <input type="range" min="1" max="100" [(ngModel)]="sliders[2]" class="slider" (input)="sliderChange(2)">
+      <div class="customtooltip">{{getTooltipText(2)}}</div>
+    </div>
+    <div class="collumn" id="slider3" style="float: right; width: 50%;">
+      <div class="subsection">Sensationalism - ${{costs[3]}}</div>
+      <input type="range" min="1" max="100" [(ngModel)]="sliders[3]" class="slider" (input)="sliderChange(3)">
+      <div class="customtooltip">{{getTooltipText(3)}}</div>
+    </div>
+  </div>
+
+  <div class="row content">
+    <div class="collumn" id="slider4" style="float: left; width: 50%;">
+      <div class="subsection">Nationalization - ${{costs[4]}}</div>
+      <input type="range" min="1" max="100" [(ngModel)]="sliders[4]" class="slider" (input)="sliderChange(4)">
+      <div class="customtooltip">{{getTooltipText(4)}}</div>
+    </div>
+    <div class="collumn" id="slider5" style="float: right; width: 50%;">
+      <div class="subsection">Syndication - ${{costs[5]}}</div>
+      <input type="range" min="1" max="100" [(ngModel)]="sliders[5]" class="slider" (input)="sliderChange(5)">
+      <div class="customtooltip">{{getTooltipText(5)}}</div>
+    </div>
+  </div>
+
+  <button id="print" [disabled]="budgetRemaining < 0">Print</button>
 </body>
+
+<ng-template #rulesModal let-modal>
+  <div class="modal-body global subsection" style="text-align: left">
+    Put the rules here
+    <br>
+    Example Slider:
+    <input type="range" min="1" max="100" value="50" class="slider exampleSlider" disabled="disabled">
+  </div>
+</ng-template>
