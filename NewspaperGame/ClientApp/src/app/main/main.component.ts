@@ -20,18 +20,18 @@ export class MainComponent implements OnInit {
 
   tooltips = [
     [
-      { min: 0, max: 19, text: "" },
-      { min: 20, max: 39, text: "" },
-      { min: 40, max: 59, text: "" },
-      { min: 60, max: 79, text: "" },
-      { min: 80, max: 100, text: "Well Researched Investigations" }
+      { min: 0, max: 19, text: "Make up some interesting news" },
+      { min: 20, max: 39, text: "Quotes and numbers embelished for added drama" },
+      { min: 40, max: 59, text: "News with personal anecdotes" },
+      { min: 60, max: 79, text: "Factually accurate" },
+      { min: 80, max: 100, text: "Well Researched Novel Investigations" }
     ],
     [
       { min: 0, max: 19, text: "" },
       { min: 20, max: 39, text: "" },
       { min: 40, max: 59, text: "" },
       { min: 60, max: 79, text: "" },
-      { min: 80, max: 100, text: "" }
+      { min: 80, max: 100, text: "Long form journalism" }
     ],
     [
       { min: 0, max: 19, text: "" },
@@ -64,9 +64,9 @@ export class MainComponent implements OnInit {
   ];
 
   costEquations = [
+    { min: 0, max: 1000, scale: "log" },
     { min: 0, max: 1000, scale: "linear" },
-    { min: 0, max: 1000, scale: "linear" },
-    { min: 0, max: 1000, scale: "linear" },
+    { min: 0, max: 0, scale: "linear" },
     { min: 0, max: 1000, scale: "linear" },
     { min: 0, max: 1000, scale: "linear" },
     { min: 0, max: 1000, scale: "linear" }
@@ -130,6 +130,10 @@ export class MainComponent implements OnInit {
     //Calculate the costs
     if (this.costEquations[i].scale == "linear") {
       this.costs[i] = (this.costEquations[i].max - this.costEquations[i].min) / 100 * this.sliders[i];
+    } else if (this.costEquations[i].scale == "log") {
+      console.log(this.sliders[i])
+      console.log(this.sliders[i]**2)
+      this.costs[i] = Math.round((this.sliders[i]) ** 2 / 100 ** 2 * (this.costEquations[i].max - this.costEquations[i].min), 2);
     }
     this.budgetRemaining = this.budget - this.costs.reduce((previousValue, currentValue) => (previousValue + currentValue));
   }
