@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Newspaper } from '../../classes/newspaper';
 import { Opponent } from '../../classes/opponent';
 import { Public } from '../../classes/public';
+import { Tools } from '../../classes/tools';
 
 @Component({
   selector: 'app-main',
@@ -15,17 +16,16 @@ export class MainComponent implements OnInit {
   newspapers: Newspaper[];
   opponents: Opponent[];
   
-  localPopularity: number = 25;
-  nationalPopularity: number = 0;
+  popularity: number = 25;
   sliders: number[] = [50, 50, 50, 50, 50, 50];
   costs: number[] = [50, 50, 50, 50, 50, 50];
-  budget: number = 1500;
+  budget: number = 1250;
   budgetRemaining: number = this.budget;
 
   tooltips = [
     [
-      { min: 0, max: 19, text: "Make up some interesting news" },
-      { min: 20, max: 39, text: "Quotes and numbers embelished for added drama" },
+      { min: 0, max: 19, text: "News is completely fake" },
+      { min: 20, max: 39, text: "Made up a few interesting stories" },
       { min: 40, max: 59, text: "News with personal anecdotes" },
       { min: 60, max: 79, text: "Factually accurate" },
       { min: 80, max: 100, text: "Well Researched Novel Investigations" }
@@ -166,7 +166,7 @@ export class MainComponent implements OnInit {
       weeksPapers.push(o.generatePaper(this.date))
     }
 
-    //Calculate popularity
+    //Calculate Local Popularity
     var scores: [string, number][] = [];
     //for My paper
     scores.push([
@@ -178,45 +178,71 @@ export class MainComponent implements OnInit {
         o.name, o.sliders.filter((s, i) => s >= Public.slidersLeft[i] && s <= Public.slidersRight[i]).length
       ]);
     }
+
     scores.sort((n1, n2) => n1[1] - n2[1])
     console.log(scores);
     //See who wins a loses
     var mid = Math.floor(scores.length/2);
 
     //bank is if the mid increases too
-    var bank = scores.map(s => s[1]).reduce((p, c) => p + (c - scores[mid][1]));
+    var bank = scores.map(s => s[1]).map(s => scores[mid][1] - s).reduce((p, c) => p + c);
     var bankSplit = scores.filter(s => s[1] >= scores[mid][1]).length;
     for (let score of scores) {
       let delta = (score[1] - scores[mid][1]);
       //clear bank
-      if (score[1] >= scores[mid][1]) {
+      //A positive bank means that people lost more than those greator than the mid gained
+      if (bank > 0 && score[1] >= scores[mid][1]) {
         delta += bank / bankSplit;
+      } else if (bank < 0 && score[1] < scores[mid][1]) {
+        delta -= bank / bankSplit;
       }
       if (score[0] == 'mine') {
-        this.localPopularity += delta;
+        this.popularity += delta;
       } else {
-        this.opponents.filter(o => o.name == score[0])[0].localPopularity += delta;
+        let o = this.opponents.filter(o => o.name == score[0])[0];
+        o.popDelta = delta;
+        o.popularity = Tools.TrimNumber(o.popularity + delta);
+        //Reduce from bank
+        if (o.popularity + delta < 0) {
+          bank -= Math.abs(o.popularity + delta)
+        }
       }
     }
       
     //Shift the public
     for (var i = 0; i < this.sliders.length; i++) {
-      var value = (this.sliders[i] + weeksPapers.map(p => p.sliders[i]).reduce((p, c) => p + c)) / (this.opponents.length + 1);
-      if (value > Public.slidersRight[i]) {
-        Public.slidersRight[i] = (Public.slidersRight[i] + Public.slidersDeltaRight[i]) % 100;
+      var outsideLeft = weeksPapers.filter(p => p.sliders[i] < Public.slidersLeft[i]).length;
+      var outsideRight = weeksPapers.filter(p => p.sliders[i] > Public.slidersRight[i]).length;
+      if (outsideRight >= 1) {
+        Public.slidersRight[i] = Tools.TrimNumber(Public.slidersRight[i] + Public.slidersDeltaRight[i]);
       } else if (Math.abs(Public.slidersRight[i] - Public.slidersLeft[i]) > 10) {
-        Public.slidersRight[i] = (Public.slidersRight[i] - Public.slidersDeltaRight[i]) % 100;
+        Public.slidersRight[i] = Tools.TrimNumber(Public.slidersRight[i] - Public.slidersDeltaRight[i]);
       }
-      if (value < Public.slidersLeft[i]) {
-        Public.slidersLeft[i] = (Public.slidersLeft[i] - Public.slidersDeltaLeft[i]) % 100;
+      if (outsideLeft >= 1) {
+        Public.slidersLeft[i] = Tools.TrimNumber(Public.slidersLeft[i] - Public.slidersDeltaLeft[i]);
       } else if (Math.abs(Public.slidersRight[i] - Public.slidersLeft[i]) > 10) {
-        Public.slidersLeft[i] = (Public.slidersLeft[i] + Public.slidersDeltaLeft[i]) % 100;
+        Public.slidersLeft[i] = Tools.TrimNumber(Public.slidersLeft[i] + Public.slidersDeltaLeft[i]);
       }
     }
 
+    //Recolor all of the sliders
     this.recolorSliders();
     for (var i = 0; i < this.sliders.length; i++) {
       this.sliderChange(i);
+    }
+
+    //Opponents adjust their sliders
+    for (let o of this.opponents) {
+      o.shiftSliders();
+    }
+
+    //Temp Print
+    for (let o of this.opponents) {
+      console.log(o.name);
+      console.log(o.popularity);
+      for (let s of o.sliders) {
+        console.log(s);
+      }
     }
   }
 

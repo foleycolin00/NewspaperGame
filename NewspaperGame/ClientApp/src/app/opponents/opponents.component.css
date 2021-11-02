@@ -1,4 +1,37 @@
 body {
-  background-color: darkred;
+  background-color: darkgrey;
   height: 100%;
+  padding: 5%;
+}
+
+.opponentBox {
+  height: 90%;
+  width: 90%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  background: #d3d3d3;
+  border-radius: 25px;
+  padding: 5%;
+}
+
+.name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 1.5vw;
+  text-transform: uppercase;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: end;
+  margin-left: 5%;
+}
+
+.newspaperIcon {
+  height: auto;
+  width: 15%;
+  display: inline-block;
+}
+
+.pop {
+  font-family: 'Playfair Display', serif;
+  font-size: 1vw;
 }

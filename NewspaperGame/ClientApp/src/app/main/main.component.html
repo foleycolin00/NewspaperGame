@@ -1,12 +1,12 @@
 <body>
   <div>
     <button class="boxA" (click)="viewRules(rulesModal)">Rules</button>
-    <header>Name of Newspaper</header>
-    <div class="boxB" style="position: relative; float:right; font-size=">
-      Local Popularity: <b>{{localPopularity}}%</b>
-      National Popularity: <b>{{nationalPopularity}}%</b>
+    <div class="boxB" style="position: relative; float:right;">
+      Popularity: <b>{{popularity | number: '1.0-2'}}%</b>
       Journalism Rating: <b>B+</b>
     </div>
+    <header>Name of Newspaper</header>
+    
   </div>
 
   <div class="subhead">York, MA - {{date.toDateString()}}</div>

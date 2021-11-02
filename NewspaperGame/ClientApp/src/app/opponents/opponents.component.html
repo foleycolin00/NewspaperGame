@@ -1,3 +1,17 @@
 <body>
-  <p>opponents works!</p>
+  <div *ngIf="temp">
+    <ng-container *ngFor="let opponent of opponents()">
+      <div class="opponentBox">
+        <div>
+          <img class="newspaperIcon" src="/assets/newspaper.png" alt="newspaper">
+          <div class="name">
+            {{opponent.name}}
+          </div>
+        </div>
+        <div class="pop">
+          Popularity: {{opponent.popularity | number: '1.0-2'}}%
+        </div>
+      </div>
+    </ng-container>
+  </div>
 </body>

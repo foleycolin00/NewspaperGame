@@ -30,6 +30,7 @@
   <ItemGroup>
     <None Remove="ClientApp\src\classes\newspaper.ts" />
     <None Remove="ClientApp\src\classes\public.ts" />
+    <None Remove="ClientApp\src\classes\tools.ts" />
   </ItemGroup>
 
   <ItemGroup>
