@@ -9,12 +9,14 @@ import { MainComponent } from './main/main.component';
 import { OpponentsComponent } from './opponents/opponents.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EventsComponent } from './events/events.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     OpponentsComponent,
+    EventsComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -23,6 +25,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserAnimationsModule,
     NgbModule
   ],
+  entryComponents: [EventsComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

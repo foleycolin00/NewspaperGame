@@ -4,6 +4,7 @@ import { Newspaper } from '../../classes/newspaper';
 import { Opponent } from '../../classes/opponent';
 import { Public } from '../../classes/public';
 import { Tools } from '../../classes/tools';
+import { EventsComponent } from '../events/events.component';
 
 @Component({
   selector: 'app-main',
@@ -21,6 +22,10 @@ export class MainComponent implements OnInit {
   costs: number[] = [50, 50, 50, 50, 50, 50];
   budget: number = 1250;
   budgetRemaining: number = this.budget;
+  limitRight: number[] = [null, null, null, null, null, null]
+  limitLeft: number[] = [null, null, null, null, null, null]
+  limitSet: number[] = [null, null, null, null, null, null]
+  invalidLimits: boolean[] = [false, false, false, false, false, false]
 
   tooltips = [
     [
@@ -141,6 +146,22 @@ export class MainComponent implements OnInit {
     } else {
       style.innerHTML = `#slider${i} .slider::-webkit-slider-thumb { background: black; !important; }`;
     }
+
+    //Impose limits
+    this.invalidLimits[i] = false
+    if (this.limitLeft[i] && this.sliders[i] < this.limitLeft[i]) {
+      style.innerHTML = `#slider${i} .slider::-webkit-slider-thumb { background: red; !important; }`;
+      this.invalidLimits[i] = true
+    }
+    if (this.limitRight[i] && this.sliders[i] > this.limitRight[i]) {
+      style.innerHTML = `#slider${i} .slider::-webkit-slider-thumb { background: red; !important; }`;
+      this.invalidLimits[i] = true
+    }
+    if (this.limitSet[i] && this.sliders[i] != this.limitSet[i]) {
+      style.innerHTML = `#slider${i} .slider::-webkit-slider-thumb { background: red; !important; }`;
+      this.invalidLimits[i] = true
+    }
+
     head.appendChild(style);
 
     //Calculate the costs
@@ -244,10 +265,29 @@ export class MainComponent implements OnInit {
         console.log(s);
       }
     }
+
+    this.viewEvent();
   }
 
   viewRules(content) {
     this.modalService.open(content, { size: 'xl' });
+  }
+
+  viewEvent() {
+    const modalRef = this.modalService.open(EventsComponent, { backdrop: 'static', keyboard: false });
+    modalRef.componentInstance.limitLeft = this.limitLeft;
+    modalRef.componentInstance.limitRight = this.limitRight;
+    modalRef.componentInstance.limitSet = this.limitSet;
+    modalRef.componentInstance.sliders = this.sliders;
+    modalRef.result.then((result) => {
+      if (result) {
+        console.log(result);
+      }
+    });
+  }
+
+  areLimitsInvalid() {
+    return this.invalidLimits.filter(l => l).length
   }
 
 }

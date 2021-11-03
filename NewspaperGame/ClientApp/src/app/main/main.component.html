@@ -18,25 +18,45 @@
     <div class="collumn" id="slider0" style="float: left; width: 50%;">
       <div class="subsection">Journalism: ${{costs[0]}}</div>
       <input type="range" min="0" max="100" [(ngModel)]="sliders[0]" class="slider" (input)="sliderChange(0)">
-      <div class="customtooltip">{{getTooltipText(0)}}</div>
-    </div>
+      <div class="container">
+        <div [style.visibility]="limitLeft[0] ? 'visible' : 'hidden'" class="limit">Limit Left: {{limitLeft[0]}}</div>
+        <div [style.visibility]="limitRight[0] ? 'visible' : 'hidden'" class="limit">Limit Right: {{limitRight[0]}}</div>
+        <div [style.visibility]="limitSet[0]  ? 'visible' : 'hidden'" class="limit">Set Value: {{limitSet[0]}}</div>
+      </div>
+      <div class="customtooltip">{{sliders[0]}}<br>{{getTooltipText(0)}}</div>
+      </div>
     <div class="collumn" id="slider1" style="float: right; width: 50%;">
       <div class="subsection">Content: ${{costs[1]}}</div>
       <input type="range" min="0" max="100" [(ngModel)]="sliders[1]" class="slider" (input)="sliderChange(1)">
-      <div class="customtooltip">{{getTooltipText(1)}}</div>
+      <div class="container">
+        <div [style.visibility]="limitLeft[1] ? 'visible' : 'hidden'" class="limit">Limit Left: {{limitLeft[1]}}</div>
+        <div [style.visibility]="limitRight[1] ? 'visible' : 'hidden'" class="limit">Limit Right: {{limitRight[1]}}</div>
+        <div [style.visibility]="limitSet[1]  ? 'visible' : 'hidden'" class="limit">Set Value: {{limitSet[1]}}</div>
+      </div>
+      <div class="customtooltip">{{sliders[1]}}<br>{{getTooltipText(1)}}</div>
     </div>
-  </div>
+    </div>
 
   <div class="row content">
     <div class="collumn" id="slider2" style="float: left; width: 50%;">
       <div class="subsection">Tone: {{sliders[2] - 50}}</div>
       <input type="range" min="0" max="100" [(ngModel)]="sliders[2]" class="slider" (input)="sliderChange(2)">
-      <div class="customtooltip">{{getTooltipText(2)}}</div>
+      <div class="container">
+        <div [style.visibility]="limitLeft[2] ? 'visible' : 'hidden'" class="limit">Limit Left: {{limitLeft[2]}}</div>
+        <div [style.visibility]="limitRight[2] ? 'visible' : 'hidden'" class="limit">Limit Right: {{limitRight[2]}}</div>
+        <div [style.visibility]="limitSet[2]  ? 'visible' : 'hidden'" class="limit">Set Value: {{limitSet[2]}}</div>
+      </div>
+      <div class="customtooltip">{{sliders[2]}}<br>{{getTooltipText(2)}}</div>
     </div>
     <div class="collumn" id="slider3" style="float: right; width: 50%;">
       <div class="subsection">Sensationalism: {{sliders[3]}}</div>
       <input type="range" min="0" max="100" [(ngModel)]="sliders[3]" class="slider" (input)="sliderChange(3)">
-      <div class="customtooltip">{{getTooltipText(3)}}</div>
+      <div class="container">
+        <div [style.visibility]="limitLeft[3] ? 'visible' : 'hidden'" class="limit">Limit Left: {{limitLeft[3]}}</div>
+        <div [style.visibility]="limitRight[3] ? 'visible' : 'hidden'" class="limit">Limit Right: {{limitRight[3]}}</div>
+        <div [style.visibility]="limitSet[3]  ? 'visible' : 'hidden'" class="limit">Set Value: {{limitSet[3]}}</div>
+      </div>
+      <div class="customtooltip">{{sliders[3]}}<br>{{getTooltipText(3)}}</div>
     </div>
   </div>
 
@@ -44,16 +64,26 @@
     <div class="collumn" id="slider4" style="float: left; width: 50%;">
       <div class="subsection">Nationalization: ${{costs[4]}}</div>
       <input type="range" min="0" max="100" [(ngModel)]="sliders[4]" class="slider" (input)="sliderChange(4)">
-      <div class="customtooltip">{{getTooltipText(4)}}</div>
+      <div class="container">
+        <div [style.visibility]="limitLeft[4] ? 'visible' : 'hidden'" class="limit">Limit Left: {{limitLeft[4]}}</div>
+        <div [style.visibility]="limitRight[4] ? 'visible' : 'hidden'" class="limit">Limit Right: {{limitRight[4]}}</div>
+        <div [style.visibility]="limitSet[4]  ? 'visible' : 'hidden'" class="limit">Set Value: {{limitSet[4]}}</div>
+      </div>
+      <div class="customtooltip">{{sliders[4]}}<br>{{getTooltipText(4)}}</div>
     </div>
     <div class="collumn" id="slider5" style="float: right; width: 50%;">
       <div class="subsection">Syndication: ${{costs[5]}}</div>
       <input type="range" min="0" max="100" [(ngModel)]="sliders[5]" class="slider" (input)="sliderChange(5)">
-      <div class="customtooltip">{{getTooltipText(5)}}</div>
+      <div class="container">
+        <div [style.visibility]="limitLeft[5] ? 'visible' : 'hidden'" class="limit">Limit Left: {{limitLeft[5]}}</div>
+        <div [style.visibility]="limitRight[5] ? 'visible' : 'hidden'" class="limit">Limit Right: {{limitRight[5]}}</div>
+        <div [style.visibility]="limitSet[5]  ? 'visible' : 'hidden'" class="limit">Set Value: {{limitSet[5]}}</div>
+      </div>
+      <div class="customtooltip">{{sliders[5]}}<br>{{getTooltipText(5)}}</div>
     </div>
   </div>
 
-  <button id="print" [disabled]="budgetRemaining < 0" (click)="createpaper()">Print</button>
+  <button id="print" [disabled]="budgetRemaining < 0 || areLimitsInvalid()" (click)="createpaper()">Print</button>
 </body>
 
 <ng-template #rulesModal let-modal>
@@ -63,4 +93,8 @@
     Example Slider:
     <input type="range" min="1" max="100" value="50" class="slider exampleSlider" disabled="disabled">
   </div>
+</ng-template>
+
+<ng-template #eventModal let-modal>
+  <app-events></app-events>
 </ng-template>

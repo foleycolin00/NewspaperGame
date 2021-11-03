@@ -27,6 +27,26 @@ header {
   text-align: center;
 }
 
+.limit {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: small;
+  vertical-align: middle;
+  text-align: center;
+  color: red;
+  display: block;
+  flex-grow: 4;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 25px;
+  padding-left: 15px;
+  padding-right: 15px
+}
+
 input {
   margin-top: 40px;
 }
