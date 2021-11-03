@@ -14,3 +14,12 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+
+.modal-content {
+  background-color: transparent;
+  border: none;
+}
+
+.modal-dialog {
+  width: 1500px;
+}

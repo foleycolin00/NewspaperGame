@@ -1,3 +1,78 @@
-.close {
-  display: none;
+.body {
+  background-color: transparent;
+}
+
+.modal-header {
+  background-color: #f9f7f1;
+  border: none;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+
+.modal-body {
+  background-color: #f9f7f1;
+  border: none;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+.modal-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 4vw;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.description {
+  font-family: 'Playfair Display', serif;
+  text-transform: uppercase;
+  margin: 0px 100px 20px 100px;
+}
+
+.choiceContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.choiceBox {
+  font-family: 'Playfair Display', serif;
+  text-transform: uppercase;
+  background: lightgray;
+  border-radius: 25px;
+  width: 290px;
+  height: 500px;
+  text-align: center;
+  padding: 25px;
+  border: 4px solid transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.choiceBox:hover {
+  border: 4px solid black;
+}
+
+.choiceTitle {
+  font-family: 'Playfair Display', serif;
+  text-transform: uppercase;
+  font-size: 25px;
+  font-weight: 900;
+}
+
+.choiceDescription {
+  font-family: 'Playfair Display', serif;
+  text-transform: uppercase;
+  font-size: 15px;
+}
+
+.choiceEffectDesc {
+  font-family: 'Playfair Display', serif;
+  text-transform: uppercase;
+  font-size: 15px;
+  color: darkred;
 }

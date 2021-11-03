@@ -1,9 +1,19 @@
-<div class="modal-header">
-  <h4 class="modal-title" id="modal-basic-title">Simple modal</h4>
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<div class="modal-body">
-  <button (click)="passBack()" type="submit" class="btn btn-primary w-100">Pass back</button>
-</div>
+<body style="background-color: #fff0;">
+  <div class="modal-header">
+    <h4 class="modal-title w-100" >{{chosenEvent.title}}</h4>
+  </div>
+  <div class="modal-body">
+    <h4 class="description">{{chosenEvent.description}}</h4>
+    <div class="choiceContainer">
+      <ng-container *ngFor="let choice of chosenEvent.choices; let i = index">
+        <div class="choiceBox" (click)="choiceMade(i)">
+          <p class="choiceTitle">{{choice.title}}</p>
+          <br>
+          <p class="choiceDescription">{{choice.description}}</p>
+          <br>
+          <p class="choiceEffectDesc">{{choice.effectDesc}}</p>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</body>
