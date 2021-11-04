@@ -266,7 +266,8 @@ export class MainComponent implements OnInit {
       }
     }
 
-    this.viewEvent();
+    //Enabled when we have events ready
+    //this.viewEvent();
   }
 
   viewRules(content) {
