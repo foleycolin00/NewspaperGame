@@ -153,3 +153,11 @@ input {
 .exampleSlider {
   background: linear-gradient(to right, #d3d3d3 0%, #d3d3d3 25%, #54a16b 25%, #54a16b 75%, #d3d3d3 75%, #d3d3d3 100%);
 }
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}

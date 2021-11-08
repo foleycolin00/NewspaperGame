@@ -35,3 +35,11 @@ body {
   font-family: 'Playfair Display', serif;
   font-size: 1vw;
 }
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}

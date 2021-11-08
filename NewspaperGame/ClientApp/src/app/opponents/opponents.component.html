@@ -9,7 +9,10 @@
           </div>
         </div>
         <div class="pop">
-          Popularity: {{opponent.popularity | number: '1.0-2'}}%
+          Popularity: <b [ngClass]="{ 'positive' : opponent.popChange > 0, 'negative' : opponent.popChange < 0 }">{{opponent.popularity | number: '1.0-2'}}%</b>
+        </div>
+        <div class="pop">
+          Rating: <b [ngClass]="{ 'positive' : opponent.ratingChange > 0, 'negative' : opponent.ratingChange < 0 }">{{getLetterRating(opponent.rating)}}</b>
         </div>
       </div>
     </ng-container>

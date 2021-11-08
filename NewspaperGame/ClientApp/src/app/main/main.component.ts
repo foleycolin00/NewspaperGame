@@ -17,15 +17,18 @@ export class MainComponent implements OnInit {
   newspapers: Newspaper[];
   opponents: Opponent[];
   
-  popularity: number = 25;
   sliders: number[] = [50, 50, 50, 50, 50, 50];
   costs: number[] = [50, 50, 50, 50, 50, 50];
-  budget: number = 1250;
+  budget: number = 2000;
   budgetRemaining: number = this.budget;
   limitRight: number[] = [null, null, null, null, null, null]
   limitLeft: number[] = [null, null, null, null, null, null]
   limitSet: number[] = [null, null, null, null, null, null]
   invalidLimits: boolean[] = [false, false, false, false, false, false]
+  popularity: number = 25;
+  popularityChange: number = 0;
+  rating: number = this.getSlidersRating(this.sliders);
+  ratingChange: number = 0;
 
   tooltips = [
     [
@@ -187,7 +190,7 @@ export class MainComponent implements OnInit {
       weeksPapers.push(o.generatePaper(this.date))
     }
 
-    //Calculate Local Popularity
+    //------------------------Calculate Popularity------------------------
     var scores: [string, number][] = [];
     //for My paper
     scores.push([
@@ -199,36 +202,63 @@ export class MainComponent implements OnInit {
         o.name, o.sliders.filter((s, i) => s >= Public.slidersLeft[i] && s <= Public.slidersRight[i]).length
       ]);
     }
-
-    scores.sort((n1, n2) => n1[1] - n2[1])
-    console.log(scores);
-    //See who wins a loses
-    var mid = Math.floor(scores.length/2);
-
-    //bank is if the mid increases too
-    var bank = scores.map(s => s[1]).map(s => scores[mid][1] - s).reduce((p, c) => p + c);
-    var bankSplit = scores.filter(s => s[1] >= scores[mid][1]).length;
-    for (let score of scores) {
-      let delta = (score[1] - scores[mid][1]);
-      //clear bank
-      //A positive bank means that people lost more than those greator than the mid gained
-      if (bank > 0 && score[1] >= scores[mid][1]) {
-        delta += bank / bankSplit;
-      } else if (bank < 0 && score[1] < scores[mid][1]) {
-        delta -= bank / bankSplit;
-      }
-      if (score[0] == 'mine') {
-        this.popularity += delta;
-      } else {
-        let o = this.opponents.filter(o => o.name == score[0])[0];
-        o.popDelta = delta;
-        o.popularity = Tools.TrimNumber(o.popularity + delta);
-        //Reduce from bank
-        if (o.popularity + delta < 0) {
-          bank -= Math.abs(o.popularity + delta)
+    var mid = Math.floor(scores.length / 2);
+    //Account for 0 scoring papers
+    scores = scores.filter(score => {
+      if (score[0] != 'mine') {
+        let pop = this.opponents.filter(o => o.name == score[0])[0].popularity;
+        if (pop - (score[1] - scores[mid][1]) <= 0) {
+          pop = 0;
+          console.log("NOT WORKING");
+          return false;
         }
       }
+      return true;
+    });
+    mid = Math.floor(scores.length / 2);
+    scores.sort((n1, n2) => n1[1] - n2[1]);
+
+    //See who wins a loses
+    console.log(mid);
+    let topMid = scores[mid][1] == scores[scores.length - 1][1];
+    //bank is if the mid increases too or 0 based offsets
+    //A positive bank means that people lost more than those greator than the mid gained
+    var bank = scores.map(s => s[1]).map(s => scores[mid][1] - s).reduce((p, c) => p + c);
+    console.log(bank);
+    console.log("DELTAS")
+    for (let score of scores) {
+      let delta = (score[1] - scores[mid][1]);
+      if (score[1] >= scores[mid][1]) {
+        var bankSplit = topMid ? scores.filter(s => s[1] >= scores[mid][1]).length : scores.filter(s => s[1] > scores[mid][1]).length;
+        if (score[1] != scores[mid][1] || topMid) {
+          delta += bank / bankSplit;
+        }
+      }
+
+      console.log(delta)
+      if (score[0] == 'mine') {
+        this.popularity += delta;
+        this.popularityChange = delta;
+      } else {
+        let o = this.opponents.filter(o => o.name == score[0])[0];
+        o.popChange = delta;
+        o.popularity = Tools.TrimNumber(o.popularity + delta);
+      }
     }
+    //In the end, just reduce everything back to 0
+    let overage = this.popularity + this.opponents.map(o => o.popularity).reduce((p, c) => p + c) - 100;
+    let delta = overage / scores.length;
+    for (let score of scores) {
+      if (score[0] == 'mine') {
+        this.popularity -= delta;
+        this.popularityChange = this.popularityChange - delta;
+      } else {
+        let o = this.opponents.filter(o => o.name == score[0])[0];
+        o.popChange = o.popChange - delta;
+        o.popularity = Tools.TrimNumber(o.popularity - delta);
+      }
+    }
+    //-----------------------------------------------------------------
       
     //Shift the public
     for (var i = 0; i < this.sliders.length; i++) {
@@ -246,6 +276,16 @@ export class MainComponent implements OnInit {
       }
     }
 
+    //Calculate all of the ratings
+    let newRating = this.getSlidersRating(this.sliders);
+    this.ratingChange = newRating - this.rating;
+    this.rating = newRating;
+    for (let o of this.opponents) {
+      let newRating = this.getSlidersRating(o.sliders);
+      o.ratingChange = newRating - o.rating;
+      o.rating = newRating;
+    }
+
     //Recolor all of the sliders
     this.recolorSliders();
     for (var i = 0; i < this.sliders.length; i++) {
@@ -258,13 +298,11 @@ export class MainComponent implements OnInit {
     }
 
     //Temp Print
+    var tempPop = this.popularity;
     for (let o of this.opponents) {
-      console.log(o.name);
-      console.log(o.popularity);
-      for (let s of o.sliders) {
-        console.log(s);
-      }
+      tempPop += o.popularity;
     }
+    console.log(tempPop);
 
     //Enabled when we have events ready
     //this.viewEvent();
@@ -280,10 +318,29 @@ export class MainComponent implements OnInit {
     modalRef.componentInstance.limitRight = this.limitRight;
     modalRef.componentInstance.limitSet = this.limitSet;
     modalRef.componentInstance.sliders = this.sliders;
+    modalRef.componentInstance.population = this.popularity;
   }
 
   areLimitsInvalid() {
     return this.invalidLimits.filter(l => l).length
+  }
+
+  getLetterRating(rating: number): string {
+    return Tools.getRatingString(rating);
+  }
+
+  getSlidersRating(sliders) {
+    let ideal = [100, 100, 50, 0, 50, 100];
+    let weights = [1, 1, 2, 1, 2, 1];
+    //Get rating out of 600, with 600 being the lowest
+    var rating = sliders.map((s, index) => Math.abs(s - ideal[index]) * weights[index]).reduce((p, c) => p + c);
+    //Get out of 100, with 100 being the lowest
+    rating = Math.round(rating / 6);
+    //Get out of 100, with 100 being the highest
+    rating = Math.abs(rating - 100);
+    //Mathmatically, currently the highest rating you could get is an 88
+    rating = Math.round(rating/88*100);
+    return rating;
   }
 
 }

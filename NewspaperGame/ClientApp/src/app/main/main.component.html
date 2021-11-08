@@ -2,9 +2,9 @@
   <div>
     <button class="boxA" (click)="viewRules(rulesModal)">Rules</button>
     <div class="boxB" style="position: relative; float:right;">
-      Popularity: <b>{{popularity | number: '1.0-2'}}%</b>
-      Journalism Rating: <b>B+</b>
-    </div>
+      Popularity: <b [ngClass]= "{ 'positive' : popularityChange > 0, 'negative' : popularityChange < 0 }"> {{popularity | number: '1.0-2'}}%</b>
+      Journalism Rating: <b [ngClass]="{ 'positive' : ratingChange > 0, 'negative' : ratingChange < 0 }">{{rating}}</b>
+</div>
     <header>Name of Newspaper</header>
     
   </div>

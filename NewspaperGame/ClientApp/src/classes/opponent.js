@@ -6,9 +6,8 @@ var newspaper_1 = require("./newspaper");
 var tools_1 = require("./tools");
 var Opponent = /** @class */ (function () {
     function Opponent(name, focus) {
-        //Percentage Changes
-        this.shiftSliderPercentage = 1;
-        this.popDelta = 0;
+        this.popChange = 0;
+        this.ratingChange = 0;
         //Sliders
         //Index explanation:
         //0 = Journalism, 1 = Content, 2 = Tone, 3 = Sensationalism
@@ -36,7 +35,7 @@ var Opponent = /** @class */ (function () {
         //Opponent 1
         //Tabloid
         o = new Opponent("Opponent 2", 3);
-        o.popularity = 15;
+        o.popularity = 20;
         o.sliders = [10, 0, 75, 100, 50, 0];
         opps.push(o);
         //Opponent 1

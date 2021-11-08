@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Opponent } from '../../classes/opponent';
+import { Tools } from '../../classes/tools';
 
 @Component({
   selector: 'app-opponents',
@@ -20,5 +21,10 @@ export class OpponentsComponent implements OnInit {
   opponents() {
     return OpponentsComponent.opponents;
   }
+
+  getLetterRating(rating: number): string {
+    return Tools.getRatingString(rating);
+  }
+
 
 }

@@ -4,15 +4,13 @@ import { Public } from "./public";
 import { Tools } from "./tools";
 
 export class Opponent {
-  //Percentage Changes
-  shiftSliderPercentage = 1
-
   //Info
   name: string;
   focus: number;
   popularity: number;
-  popDelta: number = 0;
-  score: string;
+  popChange: number = 0;
+  rating: number;
+  ratingChange: number = 0;
 
   //Sliders
   //Index explanation:
@@ -48,7 +46,7 @@ export class Opponent {
     //Opponent 1
     //Tabloid
     o = new Opponent("Opponent 2", 3);
-    o.popularity = 15;
+    o.popularity = 20;
     o.sliders = [10, 0, 75, 100, 50, 0];
     opps.push(o)
 
@@ -56,7 +54,7 @@ export class Opponent {
     //Negative National
     o = new Opponent("Opponent 3", 4);
     o.popularity = 5;
-    o.sliders = [25, 75, 0, 75, 75,15];
+    o.sliders = [25, 75, 0, 75, 75, 15];
     opps.push(o)
 
     //Opponent 1

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { OpponentsComponent } from '../opponents/opponents.component';
 
 @Component({
   selector: 'app-events',
@@ -12,6 +13,7 @@ export class EventsComponent implements OnInit {
   @Input() public limitLeft: number[];
   @Input() public limitSet: number[];
   @Input() public sliders: number[];
+  @Input() public popularity: number;
 
   events: any[]
 
@@ -99,6 +101,11 @@ export class EventsComponent implements OnInit {
     if (impact.limits[2] != null) {
       this.limitSet[impact.index] = impact.limits[2];
       this.sliders[impact.index] = impact.limits[2];
+    }
+    //Invoke the pop changes
+    this.popularity -= choice.popChange;
+    for (let o of OpponentsComponent.opponents) {
+      o.popularity += choice.popChange / OpponentsComponent.opponents.length;
     }
     //pass the results
     this.activeModal.close();
