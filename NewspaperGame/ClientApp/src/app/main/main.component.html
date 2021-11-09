@@ -1,6 +1,6 @@
 <body>
   <div>
-    <button class="boxA" (click)="viewRules(rulesModal)">Rules</button>
+    <button class="boxA" (click)="viewModal(rulesModal)">Rules</button>
     <div class="boxB" style="position: relative; float:right;">
       Popularity: <b [ngClass]= "{ 'positive' : popularityChange > 0, 'negative' : popularityChange < 0 }"> {{popularity | number: '1.0-2'}}%</b>
       Journalism Rating: <b [ngClass]="{ 'positive' : ratingChange > 0, 'negative' : ratingChange < 0 }">{{rating}}</b>
@@ -86,12 +86,50 @@
   <button id="print" [disabled]="budgetRemaining < 0 || areLimitsInvalid()" (click)="createpaper()">Print</button>
 </body>
 
+<ng-template #introModal let-modal>
+  <div class="modal-body global subsection">
+    <div class="modal-background">
+      <div style="font-size: 60px">
+      Intro
+      </div>
+      <div class="modal-text">
+        Your grandfather has just passed and left you his prized possession: a small-town newspaper located in Massachusetts. The staff is much smaller than it used to be back in its hay-day, but a few loyal employees hope you will be the person to bring the paper back to its former glory.<br><br>
+        Your goal is to get increase the <b>Popularity</b> of the newspaper through competing with other papers for the readership of this small town.<br><br>
+        The newspaper also receives a <b>Journalism Rating</b> based on the quality of the journalism that it performs. You goal is to keep that rating high.
+      </div>
+      <div mat-dialog-actions>
+        <button class="rulesButton" (click)="modal.close(); viewModal(rulesModal)">Rules</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
 <ng-template #rulesModal let-modal>
-  <div class="modal-body global subsection" style="text-align: left">
-    Put the rules here
-    <br>
-    Example Slider:
-    <input type="range" min="1" max="100" value="50" class="slider exampleSlider" disabled="disabled">
+  <div class="modal-body global subsection">
+    <div class="modal-background">
+      <div style="font-size: 60px">
+        Rules
+      </div>
+      <div class="modal-text">
+        You can see your <b>Popularity</b> and <b>Journalism Rating</b> to the top right of your newspaper. You opponent newspapers are to the left of your screen with their Popularity and Journalism Rating.<br><br>
+        Each round, you much adjust your sliders to create your paper and press the <b>Print</b> button to print your paper for the week.<br><br>
+        Based on what you and what your opponents choose for their sliders, <b>Popularity</b> and <b>Journalism Rating</b> will be adjusted accordingly.<br><br>
+        You may not print a paper if you are over your budget for the week.<br><br>
+        Also, you will be promped with an event popup for every paper you print which will have a choice for you to make.<br>
+      </div>
+      <input type="range" min="1" max="100" value="50" class="slider exampleSlider" disabled="disabled">
+      <div class="modal-text">
+        These sliders are how you construct the elements of your paper. The orange tooltip is how you change the value. If you hover over the slider you can see what the current value is and a short description to help you to understand what that part of the slider is representing. <br><br>
+        The green areas are what is called an <b>Overton Window</b>, which is the range that the public currently accepts as mainstream newspaper. You may choose to keep within that window to keep the attention of the public OR you can choose to go outside of the overton range to shift the public toward a different direction. <br><br>
+        As you and your opponents choose the values for each slider, the overton window will shrink, grow, and slide as a response to what you and your opponents selected.<br><br>
+        <u>Journalism</u> - The quality of how well you will research or make up your stories.<br>
+        <u>Content</u> - What articles do you choose to feature in your newspaper.<br>
+        <u>Tone</u> - The attitude of your paper toward the world.<br>
+        <u>Sensationalism</u> - The use of exciting or shocking stories in order to provoke the public interest.<br>
+        <u>Nationalisation</u> - The act of replacing local or regionally focused articles with those pertaining to the nation as a whole.<br>
+        <u>Syndication</u> - The buying of columns or articles meant created for multiple newspapers vs creating unique articles for just your own.<br>
+      </div>
+    </div>
   </div>
 </ng-template>
 

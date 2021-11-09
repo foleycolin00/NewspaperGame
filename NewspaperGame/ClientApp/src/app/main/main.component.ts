@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Newspaper } from '../../classes/newspaper';
 import { Opponent } from '../../classes/opponent';
@@ -12,6 +12,7 @@ import { EventsComponent } from '../events/events.component';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+  @ViewChild('introModal') introModal: TemplateRef<any>;
 
   date: Date;
   newspapers: Newspaper[];
@@ -121,6 +122,9 @@ export class MainComponent implements OnInit {
         tooltip[i].setAttribute("style", "left:" + (e.pageX-100) + "px;top:" + (e.pageY+10) + "px");
       }
     }
+
+    //Open the intro model
+    this.viewModal(this.introModal);
   }
 
   recolorSliders() {
@@ -308,7 +312,7 @@ export class MainComponent implements OnInit {
     //this.viewEvent();
   }
 
-  viewRules(content) {
+  viewModal(content) {
     this.modalService.open(content, { size: 'xl' });
   }
 
