@@ -3,7 +3,7 @@
     <button class="boxA" (click)="viewModal(rulesModal)">Rules</button>
     <div class="boxB" style="position: relative; float:right;">
       Popularity: <b [ngClass]= "{ 'positive' : popularityChange > 0, 'negative' : popularityChange < 0 }"> {{popularity | number: '1.0-2'}}%</b>
-      Journalism Rating: <b [ngClass]="{ 'positive' : ratingChange > 0, 'negative' : ratingChange < 0 }">{{rating}}</b>
+      Journalism Rating: <b [ngClass]="{ 'positive' : ratingChange > 0, 'negative' : ratingChange < 0 }">{{getLetterRating(rating)}}</b>
 </div>
     <header>Name of Newspaper</header>
     

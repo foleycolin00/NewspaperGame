@@ -12,7 +12,7 @@ import { EventsComponent } from '../events/events.component';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  @ViewChild('introModal') introModal: TemplateRef<any>;
+  @ViewChild('introModal', { static: true }) introModal: TemplateRef<any>;
 
   date: Date;
   newspapers: Newspaper[];
@@ -213,7 +213,6 @@ export class MainComponent implements OnInit {
         let pop = this.opponents.filter(o => o.name == score[0])[0].popularity;
         if (pop - (score[1] - scores[mid][1]) <= 0) {
           pop = 0;
-          console.log("NOT WORKING");
           return false;
         }
       }
@@ -223,13 +222,10 @@ export class MainComponent implements OnInit {
     scores.sort((n1, n2) => n1[1] - n2[1]);
 
     //See who wins a loses
-    console.log(mid);
     let topMid = scores[mid][1] == scores[scores.length - 1][1];
     //bank is if the mid increases too or 0 based offsets
     //A positive bank means that people lost more than those greator than the mid gained
     var bank = scores.map(s => s[1]).map(s => scores[mid][1] - s).reduce((p, c) => p + c);
-    console.log(bank);
-    console.log("DELTAS")
     for (let score of scores) {
       let delta = (score[1] - scores[mid][1]);
       if (score[1] >= scores[mid][1]) {
@@ -308,8 +304,13 @@ export class MainComponent implements OnInit {
     }
     console.log(tempPop);
 
-    //Enabled when we have events ready
-    //this.viewEvent();
+    //Reset the limits
+    this.limitLeft = [null, null, null, null, null, null];
+    this.limitRight = [null, null, null, null, null, null];
+    this.limitSet = [null, null, null, null, null, null];
+
+    //Get an event
+    this.viewEvent();
   }
 
   viewModal(content) {
@@ -317,12 +318,17 @@ export class MainComponent implements OnInit {
   }
 
   viewEvent() {
-    const modalRef = this.modalService.open(EventsComponent, { backdrop: 'static', keyboard: false, size: 'xl' });
+    const modalRef = this.modalService.open(EventsComponent, { backdrop: 'static', keyboard: false, size: 'xl' })
+    modalRef.result.then((result) => {
+      for (let i = 0; i < this.sliders.length; i++) {
+        this.sliderChange(i);
+      }
+    });
     modalRef.componentInstance.limitLeft = this.limitLeft;
     modalRef.componentInstance.limitRight = this.limitRight;
     modalRef.componentInstance.limitSet = this.limitSet;
     modalRef.componentInstance.sliders = this.sliders;
-    modalRef.componentInstance.population = this.popularity;
+    modalRef.componentInstance.popularity = this.popularity;
   }
 
   areLimitsInvalid() {
