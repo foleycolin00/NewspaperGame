@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClient } from '@angular/common/http';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subject } from 'rxjs';
 import { OpponentsComponent } from '../opponents/opponents.component';
 
 @Component({
@@ -8,6 +10,7 @@ import { OpponentsComponent } from '../opponents/opponents.component';
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit {
+  @ViewChild('loadingModal', { static: true }) loadingModal: TemplateRef<any>;
   //Ignore any warnings from here
   @Input() public limitRight: number[];
   @Input() public limitLeft: number[];
@@ -16,49 +19,6 @@ export class EventsComponent implements OnInit {
   @Input() public popularity: number;
 
   events: any[]
-
-  /*eventsTemp: any[] = [
-    {
-      title: "This is an event title",
-      description: "description",
-      triggers: [
-        {
-          index: 0,
-          rangeMin: 0,
-          rangeMax: 100
-        }
-      ],
-      choices: [
-        {
-          title: "choice1",
-          description: "description1",
-          effectDesc: "effectDescription1",
-          impact: {
-            index: 0,
-            limits: [null, null, 50]//limits left right and set
-          }
-        },
-        {
-          title: "choice2",
-          description: "description2",
-          effectDesc: "effectDescription2",
-          impact: {
-            index: 0,
-            limits: [null, null, 0]//limits left right and set
-          }
-        },
-        {
-          title: "choice3",
-          description: "description3",
-          effectDesc: "effectDescription3",
-          impact: {
-            index: 0,
-            limits: [null, 100, null]//limits left right and set
-          }
-        }
-      ]
-    }
-  ]*/
 
   eventsTemp = [{
   title: "County Fair",
@@ -102,9 +62,9 @@ export class EventsComponent implements OnInit {
         ]
 }]
 
-  chosenEvent: any
+  chosenEvent: any = this.eventsTemp[0]
 
-  constructor(public activeModal: NgbActiveModal) { }
+  constructor(public activeModal: NgbActiveModal, private httpClient: HttpClient, private modalService: NgbModal) { }
 
   compatibleEvent(e: any): boolean {
     e.triggers.forEach((trigger) => {
@@ -118,15 +78,20 @@ export class EventsComponent implements OnInit {
   }
 
   ngOnInit() {
-    //TODO:
     //Load the events
-    this.events = this.eventsTemp;
-    //Choose an event
-    //could be based on the sliders, or public
-    let compatibleEvents = this.events.filter(e => this.compatibleEvent(e));
-    this.chosenEvent = compatibleEvents[Math.floor(Math.random() * (compatibleEvents.length))];
-    //Remove the event
-    this.events = this.events.filter(e => e.title != this.chosenEvent.title);
+    let loadingModal = this.modalService.open(this.loadingModal, { backdrop: 'static', keyboard: false});
+
+    this.httpClient.get("assets/paper_events.json").subscribe(data => {
+      this.events = data as any;
+      //Choose an event
+      //could be based on the sliders, or public
+      let compatibleEvents = this.events.filter(e => this.compatibleEvent(e));
+      this.chosenEvent = compatibleEvents[Math.floor(Math.random() * (compatibleEvents.length))];
+      //Remove the event
+      this.events = this.events.filter(e => e.title != this.chosenEvent.title);
+
+      loadingModal.close();
+    });
   }
 
   choiceMade(choiceIndex: number) {
@@ -148,13 +113,10 @@ export class EventsComponent implements OnInit {
     }
     
     //Invoke the pop changes
-    console.log(this.popularity)
-    console.log(choice.popChange)
-    this.popularity += choice.popChange;
     for (let o of OpponentsComponent.opponents) {
-      o.popularity += choice.popChange / OpponentsComponent.opponents.length;
+      o.popularity -= choice.popChange / OpponentsComponent.opponents.length;
     }
     //pass the results
-    this.activeModal.close();
+    this.activeModal.close(choice.popChange);
   }
 }

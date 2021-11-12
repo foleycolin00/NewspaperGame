@@ -181,8 +181,6 @@ export class MainComponent implements OnInit {
   }
 
   createpaper() {
-    console.log("New Paper")
-
     //Save the paper
     var news = new Newspaper(this.date, this.sliders);
     this.date.setDate(this.date.getDate() + 7);
@@ -234,8 +232,6 @@ export class MainComponent implements OnInit {
           delta += bank / bankSplit;
         }
       }
-
-      console.log(delta)
       if (score[0] == 'mine') {
         this.popularity += delta;
         this.popularityChange = delta;
@@ -319,16 +315,17 @@ export class MainComponent implements OnInit {
 
   viewEvent() {
     const modalRef = this.modalService.open(EventsComponent, { backdrop: 'static', keyboard: false, size: 'xl' })
-    modalRef.result.then((result) => {
-      for (let i = 0; i < this.sliders.length; i++) {
-        this.sliderChange(i);
-      }
-    });
     modalRef.componentInstance.limitLeft = this.limitLeft;
     modalRef.componentInstance.limitRight = this.limitRight;
     modalRef.componentInstance.limitSet = this.limitSet;
     modalRef.componentInstance.sliders = this.sliders;
     modalRef.componentInstance.popularity = this.popularity;
+    modalRef.result.then((result) => {
+      this.popularity += result;
+      for (let i = 0; i < this.sliders.length; i++) {
+        this.sliderChange(i);
+      }
+    });
   }
 
   areLimitsInvalid() {
