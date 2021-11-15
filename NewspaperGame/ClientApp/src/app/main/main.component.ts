@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Newspaper } from '../../classes/newspaper';
 import { Opponent } from '../../classes/opponent';
@@ -12,6 +12,7 @@ import { EventsComponent } from '../events/events.component';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+  @ViewChild('introModal', { static: true }) introModal: TemplateRef<any>;
 
   date: Date;
   newspapers: Newspaper[];
@@ -121,6 +122,9 @@ export class MainComponent implements OnInit {
         tooltip[i].setAttribute("style", "left:" + (e.pageX-100) + "px;top:" + (e.pageY+10) + "px");
       }
     }
+
+    //Open the intro model
+    this.viewModal(this.introModal);
   }
 
   recolorSliders() {
@@ -177,8 +181,6 @@ export class MainComponent implements OnInit {
   }
 
   createpaper() {
-    console.log("New Paper")
-
     //Save the paper
     var news = new Newspaper(this.date, this.sliders);
     this.date.setDate(this.date.getDate() + 7);
@@ -209,7 +211,6 @@ export class MainComponent implements OnInit {
         let pop = this.opponents.filter(o => o.name == score[0])[0].popularity;
         if (pop - (score[1] - scores[mid][1]) <= 0) {
           pop = 0;
-          console.log("NOT WORKING");
           return false;
         }
       }
@@ -219,13 +220,10 @@ export class MainComponent implements OnInit {
     scores.sort((n1, n2) => n1[1] - n2[1]);
 
     //See who wins a loses
-    console.log(mid);
     let topMid = scores[mid][1] == scores[scores.length - 1][1];
     //bank is if the mid increases too or 0 based offsets
     //A positive bank means that people lost more than those greator than the mid gained
     var bank = scores.map(s => s[1]).map(s => scores[mid][1] - s).reduce((p, c) => p + c);
-    console.log(bank);
-    console.log("DELTAS")
     for (let score of scores) {
       let delta = (score[1] - scores[mid][1]);
       if (score[1] >= scores[mid][1]) {
@@ -234,8 +232,6 @@ export class MainComponent implements OnInit {
           delta += bank / bankSplit;
         }
       }
-
-      console.log(delta)
       if (score[0] == 'mine') {
         this.popularity += delta;
         this.popularityChange = delta;
@@ -304,21 +300,32 @@ export class MainComponent implements OnInit {
     }
     console.log(tempPop);
 
-    //Enabled when we have events ready
-    //this.viewEvent();
+    //Reset the limits
+    this.limitLeft = [null, null, null, null, null, null];
+    this.limitRight = [null, null, null, null, null, null];
+    this.limitSet = [null, null, null, null, null, null];
+
+    //Get an event
+    this.viewEvent();
   }
 
-  viewRules(content) {
+  viewModal(content) {
     this.modalService.open(content, { size: 'xl' });
   }
 
   viewEvent() {
-    const modalRef = this.modalService.open(EventsComponent, { backdrop: 'static', keyboard: false, size: 'xl' });
+    const modalRef = this.modalService.open(EventsComponent, { backdrop: 'static', keyboard: false, size: 'xl' })
     modalRef.componentInstance.limitLeft = this.limitLeft;
     modalRef.componentInstance.limitRight = this.limitRight;
     modalRef.componentInstance.limitSet = this.limitSet;
     modalRef.componentInstance.sliders = this.sliders;
-    modalRef.componentInstance.population = this.popularity;
+    modalRef.componentInstance.popularity = this.popularity;
+    modalRef.result.then((result) => {
+      this.popularity += result;
+      for (let i = 0; i < this.sliders.length; i++) {
+        this.sliderChange(i);
+      }
+    });
   }
 
   areLimitsInvalid() {

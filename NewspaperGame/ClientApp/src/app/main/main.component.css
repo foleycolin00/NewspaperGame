@@ -161,3 +161,17 @@ input {
 .negative {
   color: red;
 }
+
+.modal-background {
+  background: #f9f7f1;
+  border-radius: 25px;
+  padding: 25px;
+}
+
+.modal-text {
+  font-family: 'Playfair Display', serif;
+  font-weight: normal;
+  font-size: 15px;
+  text-align: left;
+  text-transform: none;
+}
