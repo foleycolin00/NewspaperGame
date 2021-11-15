@@ -29,25 +29,25 @@ var Opponent = /** @class */ (function () {
         //Classic local
         o = new Opponent("The Raleigh Times", 0);
         o.popularity = 10;
-        o.sliders = [50, 50, 50, 50, 50, 50];
+        o.sliders = [60, 80, 30, 30, 20, 70];
         opps.push(o);
         //Opponent 1
         //Tabloid
         o = new Opponent("Entertainment News", 3);
-        o.popularity = 20;
-        o.sliders = [10, 0, 75, 100, 50, 0];
+        o.popularity = 40;
+        o.sliders = [10, 0, 75, 100, 75, 0];
         opps.push(o);
         //Opponent 1
         //Negative National
         o = new Opponent("Angry Rant News", 4);
-        o.popularity = 5;
+        o.popularity = 15;
         o.sliders = [25, 75, 0, 75, 75, 15];
         opps.push(o);
         //Opponent 1
         //Really good national
         o = new Opponent("National Press", 1);
-        o.popularity = 40;
-        o.sliders = [100, 100, 0, 50, 100, 0];
+        o.popularity = 30;
+        o.sliders = [100, 80, 20, 40, 100, 10];
         opps.push(o);
         opponents_component_1.OpponentsComponent.opponents = opps;
         return opps;
