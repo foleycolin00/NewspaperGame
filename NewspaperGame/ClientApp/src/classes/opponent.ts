@@ -2,6 +2,7 @@ import { OpponentsComponent } from "../app/opponents/opponents.component";
 import { Newspaper } from "./newspaper";
 import { Public } from "./public";
 import { Tools } from "./tools";
+import { MainComponent } from "./app/main/main.component";
 
 export class Opponent {
   //Info

@@ -193,67 +193,7 @@ export class MainComponent implements OnInit {
     }
 
     //------------------------Calculate Popularity------------------------
-    var scores: [string, number][] = [];
-    //for My paper
-    scores.push([
-      'mine', this.sliders.filter((s, i) => s >= Public.slidersLeft[i] && s <= Public.slidersRight[i]).length
-    ]);
-    //for Opponents
-    for (let o of this.opponents) {
-      scores.push([
-        o.name, o.sliders.filter((s, i) => s >= Public.slidersLeft[i] && s <= Public.slidersRight[i]).length
-      ]);
-    }
-    var mid = Math.floor(scores.length / 2);
-    //Account for 0 scoring papers
-    scores = scores.filter(score => {
-      if (score[0] != 'mine') {
-        let pop = this.opponents.filter(o => o.name == score[0])[0].popularity;
-        if (pop - (score[1] - scores[mid][1]) <= 0) {
-          pop = 0;
-          return false;
-        }
-      }
-      return true;
-    });
-    mid = Math.floor(scores.length / 2);
-    scores.sort((n1, n2) => n1[1] - n2[1]);
-
-    //See who wins a loses
-    let topMid = scores[mid][1] == scores[scores.length - 1][1];
-    //bank is if the mid increases too or 0 based offsets
-    //A positive bank means that people lost more than those greator than the mid gained
-    var bank = scores.map(s => s[1]).map(s => scores[mid][1] - s).reduce((p, c) => p + c);
-    for (let score of scores) {
-      let delta = (score[1] - scores[mid][1]);
-      if (score[1] >= scores[mid][1]) {
-        var bankSplit = topMid ? scores.filter(s => s[1] >= scores[mid][1]).length : scores.filter(s => s[1] > scores[mid][1]).length;
-        if (score[1] != scores[mid][1] || topMid) {
-          delta += bank / bankSplit;
-        }
-      }
-      if (score[0] == 'mine') {
-        this.popularity += delta;
-        this.popularityChange = delta;
-      } else {
-        let o = this.opponents.filter(o => o.name == score[0])[0];
-        o.popChange = delta;
-        o.popularity = Tools.TrimNumber(o.popularity + delta);
-      }
-    }
-    //In the end, just reduce everything back to 0
-    let overage = this.popularity + this.opponents.map(o => o.popularity).reduce((p, c) => p + c) - 100;
-    let delta = overage / scores.length;
-    for (let score of scores) {
-      if (score[0] == 'mine') {
-        this.popularity -= delta;
-        this.popularityChange = this.popularityChange - delta;
-      } else {
-        let o = this.opponents.filter(o => o.name == score[0])[0];
-        o.popChange = o.popChange - delta;
-        o.popularity = Tools.TrimNumber(o.popularity - delta);
-      }
-    }
+    this.calculatePopularity();
     //-----------------------------------------------------------------
       
     //Shift the public
@@ -326,6 +266,70 @@ export class MainComponent implements OnInit {
         this.sliderChange(i);
       }
     });
+  }
+
+  calculatePopularity() {
+    var scores: [string, number][] = [];
+    //for My paper
+    scores.push([
+      'mine', this.sliders.filter((s, i) => s >= Public.slidersLeft[i] && s <= Public.slidersRight[i]).length
+    ]);
+    //for Opponents
+    for (let o of this.opponents) {
+      scores.push([
+        o.name, o.sliders.filter((s, i) => s >= Public.slidersLeft[i] && s <= Public.slidersRight[i]).length
+      ]);
+    }
+    var mid = Math.floor(scores.length / 2);
+    //Account for 0 scoring papers
+    scores = scores.filter(score => {
+      if (score[0] != 'mine') {
+        let pop = this.opponents.filter(o => o.name == score[0])[0].popularity;
+        if (pop - (score[1] - scores[mid][1]) <= 0) {
+          pop = 0;
+          return false;
+        }
+      }
+      return true;
+    });
+    mid = Math.floor(scores.length / 2);
+    scores.sort((n1, n2) => n1[1] - n2[1]);
+
+    //See who wins a loses
+    let topMid = scores[mid][1] == scores[scores.length - 1][1];
+    //bank is if the mid increases too or 0 based offsets
+    //A positive bank means that people lost more than those greator than the mid gained
+    var bank = scores.map(s => s[1]).map(s => scores[mid][1] - s).reduce((p, c) => p + c);
+    for (let score of scores) {
+      let delta = (score[1] - scores[mid][1]);
+      if (score[1] >= scores[mid][1]) {
+        var bankSplit = topMid ? scores.filter(s => s[1] >= scores[mid][1]).length : scores.filter(s => s[1] > scores[mid][1]).length;
+        if (score[1] != scores[mid][1] || topMid) {
+          delta += bank / bankSplit;
+        }
+      }
+      if (score[0] == 'mine') {
+        this.popularity += delta;
+        this.popularityChange = delta;
+      } else {
+        let o = this.opponents.filter(o => o.name == score[0])[0];
+        o.popChange = delta;
+        o.popularity = Tools.TrimNumber(o.popularity + delta);
+      }
+    }
+    //In the end, just reduce everything back to 0
+    let overage = this.popularity + this.opponents.map(o => o.popularity).reduce((p, c) => p + c) - 100;
+    let delta = overage / scores.length;
+    for (let score of scores) {
+      if (score[0] == 'mine') {
+        this.popularity -= delta;
+        this.popularityChange = this.popularityChange - delta;
+      } else {
+        let o = this.opponents.filter(o => o.name == score[0])[0];
+        o.popChange = o.popChange - delta;
+        o.popularity = Tools.TrimNumber(o.popularity - delta);
+      }
+    }
   }
 
   areLimitsInvalid() {
