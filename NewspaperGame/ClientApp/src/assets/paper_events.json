@@ -1,530 +1,1241 @@
 [
-   {
-      "title":"County Fair",
-      "description":"The local county fair is this week! Would you be able to cover some of the festivities? -The Mayor",
-      "triggers":[
-         {
+  {
+    "type": "story",
+    "storyNo": 0,
+    "storySeq": 0,
+    "title":"County Fair",
+    "description":"The local county fair is this week! Would you be able to cover some of the festivities? -The Mayor",
+    "triggers":[
+      {
+        "index":0,
+        "rangeMin":0,
+        "rangeMax":100
+      }
+    ],
+    "choices":[
+      {
+        "title":"Cover the Fair",
+        "description":"You decide to cover the fair in its entirety for the good of the town.",
+        "effectDesc":"Your popularity will increased by 10%, content will be limited to below 25 and your nationalization will be set to 0.",
+        "impacts":[
+          {
+            "index":4,
+            "limits":[
+              null,
+              null,
+              0
+            ]
+          },
+          {
+            "index":1,
+            "limits":[
+              null,
+              25,
+              null
+            ]
+          }
+        ],
+        "popChange":10
+      },
+      {
+        "title":"Don't cover the fair",
+        "description":"You decide that there are better things to do than to cover the fair, but there are no local stories to cover in the meantime.",
+        "effectDesc":"Your popularity will decrease by 20% and your nationalization will be set to 100.",
+        "impacts":[
+          {
+            "index":4,
+            "limits":[
+              null,
+              null,
+              100
+            ]
+          }
+        ],
+        "popChange":-20
+      }
+    ]
+  },
+  {
+    "type": "story",
+    "storyNo": 1,
+    "storySeq": 1,
+    "title":"Wishy-washy",
+    "description":"Journalist are so wishy washy these days. Why dont they ever have an opinion on anything?? -Bill from the farmers market",
+    "triggers":[
+      {
+        "index":2,
+        "rangeMin":25,
+        "rangeMax":50
+      }
+    ],
+    "choices":[
+      {
+        "title":"Become more cynical.",
+        "description":"You decide to become a more cynical newspaper.",
+        "effectDesc":"Your tone will be limited to below 25",
+        "impacts":[
+          {
+            "index":2,
+            "limits":[
+              null,
+              25,
+              null
+            ]
+          }
+        ],
+        "popChange":0
+      },
+      {
+        "title":"Become more positive",
+        "description":"You decide to become a more positive newspaper.",
+        "effectDesc":"Your tone will be limited to above 75.",
+        "impacts":[
+          {
+            "index":2,
+            "limits":[
+              75,
+              null,
+              null
+            ]
+          }
+        ],
+        "popChange":0
+      }
+    ]
+  },
+  {
+    "type": "story",
+    "storyNo": 2,
+    "storySeq": 2,
+    "title":"Medical devices",
+    "description":"A very prominent medical device company, MedCo, is creating devices that are harming their patients. The people need to know. -Anonymous from MedCo",
+    "triggers":[
+
+    ],
+    "choices":[
+      {
+        "title":"Report on MedCo",
+        "description":"You decide to report on MedCo's faulty devices.",
+        "effectDesc":"Your journalism will be limited to above 25. MedCo may pull some strings to shut your paper down.",
+        "impacts":[
+          {
+            "index":2,
+            "limits":[
+              25,
+              null,
+              null
+            ]
+          }
+        ],
+        "popChange":-30
+      },
+      {
+        "title":"Do not report on MedCo",
+        "description":"You decide not to report on MedCo's faulty devices.",
+        "effectDesc":"Your tone will be limited to below 50.",
+        "impacts":[
+          {
+            "index":2,
+            "limits":[
+              null,
+              50,
+              null
+            ]
+          }
+        ],
+        "popChange":0
+      }
+    ]
+  },
+  {
+    "type": "story",
+    "storyNo": 3,
+    "storySeq": 3,
+    "title":"Food shortage",
+    "description":"Massive crop failures due to climate change have led to a food shortage that will start to hit shelves within two weeks -Anonymous from Dole",
+    "triggers":[
+      {
+        "index":2,
+        "rangeMin":0,
+        "rangeMax":50
+      }
+    ],
+    "choices":[
+      {
+        "title":"Cover the food shortage",
+        "description":"You decide to report on climate change, the resulting crop failures, and the imminent food shortage.",
+        "effectDesc":"Hoarders will panic-buy essential food items, worsening the effects of the inevitable food shortage. Popularity will increase by 15%. Your sensationalism and nationalism will both be limited to above 50. Your tone will be set to 0.",
+        "impacts":[
+          {
+            "index":2,
+            "limits":[
+              null,
+              null,
+              0
+            ]
+          },
+          {
+            "index":3,
+            "limits":[
+              50,
+              null,
+              null
+            ]
+          },
+          {
+            "index":4,
+            "limits":[
+              50,
+              null,
+              null
+            ]
+          }
+        ],
+        "popChange":15
+      },
+      {
+        "title":"Do not cover the food shortage",
+        "description":"You decide not to report on climate change, the resulting crop failures, and the imminent food shortage.",
+        "effectDesc":"The public remains unaware of the incoming food shortage for the moment and is not educated on how climate change is causing the food shortage. Your tone will be limited to above 50.",
+        "impacts":[
+          {
+            "index":2,
+            "limits":[
+              50,
+              null,
+              null
+            ]
+          }
+        ],
+        "popChange":0
+      }
+    ]
+  },
+
+  {
+    "type": "story",
+    "storyNo": 4,
+    "storySeq": 4,
+    "title":"Homeless sanctuaries in New York",
+    "description":"The government has just announced new 'sanctuaries' for homeless people in New York City. Thousands are rushing for a spot.",
+    "triggers":[
+
+    ],
+    "choices":[
+      {
+        "title":"Report on the homeless sanctuaries",
+        "description":"With the increasing wealth gap in America, this seems like a step in the right direction.",
+        "effectDesc":"Your tone will be limited to above 25. Your nationalization will be limited to above 50. Your popularity will increase by 10%.",
+        "impacts":[
+          {
+            "index":2,
+            "limits":[
+              25,
+              null,
+              null
+            ]
+          },
+          {
+            "index":4,
+            "limits":[
+              50,
+              null,
+              null
+            ]
+          }
+        ],
+        "popChange":10
+      }
+    ]
+  },
+  {
+    "type": "story",
+    "storyNo": 5,
+    "storySeq": 5,
+    "title":"Homeless sanctuaries open all over the country",
+    "description":"After the startling success of the government-owned homeless sanctuaries in New York, these sanctuaries are rolled out nationwide.",
+    "triggers":[
+
+    ],
+    "choices":[
+      {
+        "title":"Report on the increase in homeless sanctuaries",
+        "description":"The success of the homeless sanctuaries in New York is a good omen for the future.",
+        "effectDesc":"Your tone will be limited to above 50. Your nationalization will be limited to above 50. Your popularity will increase by 5%.",
+        "impacts":[
+          {
+            "index":2,
+            "limits":[
+              50,
+              null,
+              null
+            ]
+          },
+          {
+            "index":4,
+            "limits":[
+              50,
+              null,
+              null
+            ]
+          }
+        ],
+        "popChange":5
+      }
+    ]
+  },
+  {
+    "type": "story",
+    "storyNo": 6,
+    "storySeq": 6,
+    "title":"Silence from the homeless sanctuaries",
+    "description":"After the widespread implementation of homeless sanctuaries across America, there has been startlingly little Internet activity coming from inside the shelters.",
+    "triggers":[
+
+    ],
+    "choices":[
+      {
+        "title":"Report on the silence of the homeless sanctuaries",
+        "description":"You decide to bring attention to the lack of Tweets and Instagram posts from inside the sanctuaries, hinting at a darker reality.",
+        "effectDesc":"Your tone is limited to below 50. Your nationalization is limited to above 50. Your popularity increases 5%.",
+        "impacts":[
+          {
+            "index":2,
+            "limits":[
+              null,
+              50,
+              null
+            ]
+          },
+          {
+            "index":4,
+            "limits":[
+              50,
+              null,
+              null
+            ]
+          }
+        ],
+        "popChange":5
+      },
+      {
+        "title":"Don't report on the silence of the homeless sanctuaries",
+        "description":"You choose not to report on the radio silence from the homeless sanctuaries.",
+        "effectDesc":"You focus on more local news. Your nationalization is limited to below 75.",
+        "impacts":[
+          {
+            "index":4,
+            "limits":[
+              null,
+              75,
+              null
+            ]
+          }
+        ],
+        "popChange":0
+      }
+    ]
+  },
+  {
+    "type": "story",
+    "storyNo": 7,
+    "storySeq": 7,
+    "title":"Riots at a homeless sanctuary in San Francisco",
+    "description":"Reports of riots at a homeless sanctuary in New York are flooding twitter.",
+    "triggers":[
+
+    ],
+    "choices":[
+      {
+        "title":"Send someone to report on the situation",
+        "description":"",
+        "effectDesc":"Sending a reporter to New York will cost a lot. Your journalism will be limited to above 80. Your popularity increases by 15%.",
+        "impacts":[
+          {
             "index":0,
-            "rangeMin":0,
-            "rangeMax":100
-         }
-      ],
-      "choices":[
-         {
-            "title":"Cover the Fair",
-            "description":"You decide to cover the fair in its entirety for the good of the town.",
-            "effectDesc":"Your popularity will increased by 10%, content will be limited to below 25 and your nationalization will be set to 0.",
-            "impacts":[
-               {
-                  "index":4,
-                  "limits":[
-                     null,
-                     null,
-                     0
-                  ]
-               },
-               {
-                  "index":1,
-                  "limits":[
-                     null,
-                     25,
-                     null
-                  ]
-               }
-            ],
-            "popChange":10
-         },
-         {
-            "title":"Don't cover the fair",
-            "description":"You decide that there are better things to do than to cover the fair, but there are no local stories to cover in the meantime.",
-            "effectDesc":"Your popularity will decrease by 20% and your nationalization will be set to 100.",
-            "impacts":[
-               {
-                  "index":4,
-                  "limits":[
-                     null,
-                     null,
-                     100
-                  ]
-               }
-            ],
-            "popChange":-20
-         }
-      ]
-   },
-   {
-      "title":"Wishy-washy",
-      "description":"Journalist are so wishy washy these days. Why dont they ever have an opinion on anything?? -Bill from the farmers market",
-      "triggers":[
-         {
+            "limits":[
+              80,
+              null,
+              null
+            ]
+          }
+        ],
+        "popChange":15
+      },
+      {
+        "title":"Don't report on the situation",
+        "description":"You decide to let the other hundred interested papers jump on this story.",
+        "effectDesc":"All eyes are on New York this week. Your popularity decreases by 15%. Your journalism and nationalization are limited to below 50.",
+        "impacts":[
+          {
+            "index":0,
+            "limits":[
+              null,
+              50,
+              null
+            ]
+          },
+          {
+            "index":4,
+            "limits":[
+              null,
+              50,
+              null
+            ]
+          }
+        ],
+        "popChange":-15
+      }
+    ]
+  },
+  {
+    "type": "story",
+    "storyNo": 8,
+    "storySeq": 8,
+    "title":"The truth of the homeless sanctuaries",
+    "description":"During the riots at the homeless sanctuary in New York, many residents of the homeless sanctuaries came forward and described the conditions inside the sanctuaries: that they are labor camps for the poor.",
+    "triggers":[
+
+    ],
+    "choices":[
+      {
+        "title":"Cover the truth of the homeless sanctuaries",
+        "description":"You expose the truth of the camps to the public and analyze what this means for the country.",
+        "effectDesc":"Researching the truth will cost you. Your journalism is limited to above 80. Your tone will be limited to below 50. Your popularity increases by 20%.",
+        "impacts":[
+          {
+            "index":0,
+            "limits":[
+              80,
+              null,
+              null
+            ]
+          },
+          {
             "index":2,
-            "rangeMin":25,
-            "rangeMax":50
-         }
-      ],
-      "choices":[
-         {
-            "title":"Become more cynical.",
-            "description":"You decide to become a more cynical newspaper.",
-            "effectDesc":"Your tone will be limited to below 25",
-            "impacts":[
-               {
-                  "index":2,
-                  "limits":[
-                     null,
-                     25,
-                     null
-                  ]
-               }
-            ],
-            "popChange":0
-         },
-         {
-            "title":"Become more positive",
-            "description":"You decide to become a more positive newspaper.",
-            "effectDesc":"Your tone will be limited to above 75.",
-            "impacts":[
-               {
-                  "index":2,
-                  "limits":[
-                     75,
-                     null,
-                     null
-                  ]
-               }
-            ],
-            "popChange":0
-         }
-      ]
-   },
-   {
-      "title":"Medical devices",
-      "description":"A very prominent medical device company, MedCo, is creating devices that are harming their patients. The people need to know. -Anonymous from MedCo",
-      "triggers":[
-         
-      ],
-      "choices":[
-         {
-            "title":"Report on MedCo",
-            "description":"You decide to report on MedCo's faulty devices.",
-            "effectDesc":"Your journalism will be limited to above 25. MedCo may pull some strings to shut your paper down.",
-            "impacts":[
-               {
-                  "index":2,
-                  "limits":[
-                     25,
-                     null,
-                     null
-                  ]
-               }
-            ],
-            "popChange":-30
-         },
-         {
-            "title":"Do not report on MedCo",
-            "description":"You decide not to report on MedCo's faulty devices.",
-            "effectDesc":"Your tone will be limited to below 50.",
-            "impacts":[
-               {
-                  "index":2,
-                  "limits":[
-                     null,
-                     50,
-                     null
-                  ]
-               }
-            ],
-            "popChange":0
-         }
-      ]
-   },
-   {
-      "title":"Food shortage",
-      "description":"Massive crop failures due to climate change have led to a food shortage that will start to hit shelves within two weeks -Anonymous from Dole",
-      "triggers":[
-         {
+            "limits":[
+              null,
+              50,
+              null
+            ]
+          }
+        ],
+        "popChange":20
+      },
+      {
+        "title":"Do not cover this situation",
+        "description":"You opt not to cover the terrible conditions inside the labor camps.",
+        "effectDesc":"All eyes are on other papers that reported on the homeless sanctuaries this week. Your popularity decreases by 15%. Your syndication is limited to below 50.",
+        "impacts":[
+          {
+            "index":5,
+            "limits":[
+              null,
+              50,
+              null
+            ]
+          }
+        ],
+        "popChange":-15
+      }
+    ]
+  },
+  {
+    "type": "story",
+    "storyNo": 9,
+    "storySeq": 9,
+    "title":"Protesting the sanctuaries",
+    "description":"Large-scale protests against the homeless sanctuaries have spread across the nation.",
+    "triggers":[
+
+    ],
+    "choices":[
+      {
+        "title":"Report on the protests",
+        "description":"You decide to send a reporter to one of the nearby protests.",
+        "effectDesc":"The protest turned into a riot. Your tone is limited to below 25. Your journalism is limited to above 50. Your popularity increases by 10%.",
+        "impacts":[
+          {
+            "index":0,
+            "limits":[
+              50,
+              null,
+              null
+            ]
+          },
+          {
             "index":2,
-            "rangeMin":0,
-            "rangeMax":50
-         }
-      ],
-      "choices":[
-         {
-            "title":"Cover the food shortage",
-            "description":"You decide to report on climate change, the resulting crop failures, and the imminent food shortage.",
-            "effectDesc":"Hoarders will panic-buy essential food items, worsening the effects of the inevitable food shortage. Popularity will increase by 15%. Your sensationalism and nationalism will both be limited to above 50. Your tone will be set to 0.",
-            "impacts":[
-               {
-                  "index":2,
-                  "limits":[
-                     null,
-                     null,
-                     0
-                  ]
-               },
-               {
-                  "index":3,
-                  "limits":[
-                     50,
-                     null,
-                     null
-                  ]
-               },
-               {
-                  "index":4,
-                  "limits":[
-                     50,
-                     null,
-                     null
-                  ]
-               }
-            ],
-            "popChange":15
-         },
-         {
-            "title":"Do not cover the food shortage",
-            "description":"You decide not to report on climate change, the resulting crop failures, and the imminent food shortage.",
-            "effectDesc":"The public remains unaware of the incoming food shortage for the moment and is not educated on how climate change is causing the food shortage. Your tone will be limited to above 50.",
-            "impacts":[
-               {
-                  "index":2,
-                  "limits":[
-                     50,
-                     null,
-                     null
-                  ]
-               }
-            ],
-            "popChange":0
-         }
-      ]
-   },
-   {
-      "title":"Homeless sanctuaries in New York",
-      "description":"The government has just announced new 'sanctuaries' for homeless people in New York City. Thousands are rushing for a spot.",
-      "triggers":[
-         
-      ],
-      "choices":[
-         {
-            "title":"Report on the homeless sanctuaries",
-            "description":"With the increasing wealth gap in America, this seems like a step in the right direction.",
-            "effectDesc":"Your tone will be limited to above 25. Your nationalization will be limited to above 50. Your popularity will increase by 10%.",
-            "impacts":[
-               {
-                  "index":2,
-                  "limits":[
-                     25,
-                     null,
-                     null
-                  ]
-               },
-               {
-                  "index":4,
-                  "limits":[
-                     50,
-                     null,
-                     null
-                  ]
-               }
-            ],
-            "popChange":10
-         }
-      ]
-   },
-   {
-      "title":"Homeless sanctuaries open all over the country",
-      "description":"After the startling success of the government-owned homeless sanctuaries in New York, these sanctuaries are rolled out nationwide.",
-      "triggers":[
-         
-      ],
-      "choices":[
-         {
-            "title":"Report on the increase in homeless sanctuaries",
-            "description":"The success of the homeless sanctuaries in New York is a good omen for the future.",
-            "effectDesc":"Your tone will be limited to above 50. Your nationalization will be limited to above 50. Your popularity will increase by 5%.",
-            "impacts":[
-               {
-                  "index":2,
-                  "limits":[
-                     50,
-                     null,
-                     null
-                  ]
-               },
-               {
-                  "index":4,
-                  "limits":[
-                     50,
-                     null,
-                     null
-                  ]
-               }
-            ],
-            "popChange":5
-         }
-      ]
-   },
-   {
-      "title":"Silence from the homeless sanctuaries",
-      "description":"After the widespread implementation of homeless sanctuaries across America, there has been startlingly little Internet activity coming from inside the shelters.",
-      "triggers":[
-         
-      ],
-      "choices":[
-         {
-            "title":"Report on the silence of the homeless sanctuaries",
-            "description":"You decide to bring attention to the lack of Tweets and Instagram posts from inside the sanctuaries, hinting at a darker reality.",
-            "effectDesc":"Your tone is limited to below 50. Your nationalization is limited to above 50. Your popularity increases 5%.",
-            "impacts":[
-               {
-                  "index":2,
-                  "limits":[
-                     null,
-                     50,
-                     null
-                  ]
-               },
-               {
-                  "index":4,
-                  "limits":[
-                     50,
-                     null,
-                     null
-                  ]
-               }
-            ],
-            "popChange":5
-         },
-         {
-            "title":"Don't report on the silence of the homeless sanctuaries",
-            "description":"You choose not to report on the radio silence from the homeless sanctuaries.",
-            "effectDesc":"You focus on more local news. Your nationalization is limited to below 75.",
-            "impacts":[
-               {
-                  "index":4,
-                  "limits":[
-                     null,
-                     75,
-                     null
-                  ]
-               }
-            ],
-            "popChange":0
-         }
-      ]
-   },
-   {
-      "title":"Riots at a homeless sanctuary in San Francisco",
-      "description":"Reports of riots at a homeless sanctuary in New York are flooding twitter.",
-      "triggers":[
-         
-      ],
-      "choices":[
-         {
-            "title":"Send someone to report on the situation",
-            "description":"",
-            "effectDesc":"Sending a reporter to New York will cost a lot. Your journalism will be limited to above 80. Your popularity increases by 15%.",
-            "impacts":[
-               {
-                  "index":0,
-                  "limits":[
-                     80,
-                     null,
-                     null
-                  ]
-               }
-            ],
-            "popChange":15
-         },
-         {
-            "title":"Don't report on the situation",
-            "description":"You decide to let the other hundred interested papers jump on this story.",
-            "effectDesc":"All eyes are on New York this week. Your popularity decreases by 15%. Your journalism and nationalization are limited to below 50.",
-            "impacts":[
-               {
-                  "index":0,
-                  "limits":[
-                     null,
-                     50,
-                     null
-                  ]
-               },
-               {
-                  "index":4,
-                  "limits":[
-                     null,
-                     50,
-                     null
-                  ]
-               }
-            ],
-            "popChange":-15
-         }
-      ]
-   },
-   {
-      "title":"The truth of the homeless sanctuaries",
-      "description":"During the riots at the homeless sanctuary in New York, many residents of the homeless sanctuaries came forward and described the conditions inside the sanctuaries: that they are labor camps for the poor.",
-      "triggers":[
-         
-      ],
-      "choices":[
-         {
-            "title":"Cover the truth of the homeless sanctuaries",
-            "description":"You expose the truth of the camps to the public and analyze what this means for the country.",
-            "effectDesc":"Researching the truth will cost you. Your journalism is limited to above 80. Your tone will be limited to below 50. Your popularity increases by 20%.",
-            "impacts":[
-               {
-                  "index":0,
-                  "limits":[
-                     80,
-                     null,
-                     null
-                  ]
-               },
-               {
-                  "index":2,
-                  "limits":[
-                     null,
-                     50,
-                     null
-                  ]
-               }
-            ],
-            "popChange":20
-         },
-         {
-            "title":"Do not cover this situation",
-            "description":"You opt not to cover the terrible conditions inside the labor camps.",
-            "effectDesc":"All eyes are on other papers that reported on the homeless sanctuaries this week. Your popularity decreases by 15%. Your syndication is limited to below 50.",
-            "impacts":[
-               {
-                  "index":5,
-                  "limits":[
-                     null,
-                     50,
-                     null
-                  ]
-               }
-            ],
-            "popChange":-15
-         }
-      ]
-   },
-   {
-      "title":"Protesting the sanctuaries",
-      "description":"Large-scale protests against the homeless sanctuaries have spread across the nation.",
-      "triggers":[
-         
-      ],
-      "choices":[
-         {
-            "title":"Report on the protests",
-            "description":"You decide to send a reporter to one of the nearby protests.",
-            "effectDesc":"The protest turned into a riot. Your tone is limited to below 25. Your journalism is limited to above 50. Your popularity increases by 10%.",
-            "impacts":[
-               {
-                  "index":0,
-                  "limits":[
-                     50,
-                     null,
-                     null
-                  ]
-               },
-               {
-                  "index":2,
-                  "limits":[
-                     null,
-                     25,
-                     null
-                  ]
-               }
-            ],
-            "popChange":10
-         }
-      ]
-   },
-   {
-      "title":"Government shuts down homeless sanctuaries",
-      "description":"After nationwide protests, the government has decided to stop funding and immediately close the homeless sanctuaries. Residents of the sanctuaries are back on the streets.",
-      "triggers":[
-         
-      ],
-      "choices":[
-         {
-            "title":"Report on the freedom of the residents",
-            "description":"You decide to interview former sanctuary residents for an exclusive on their newfound freedom.",
-            "effectDesc":"Your tone is limited to above 25. Your popularity increases by 5%.",
-            "impacts":[
-               {
-                  "index":2,
-                  "limits":[
-                     25,
-                     null,
-                     null
-                  ]
-               }
-            ],
-            "popChange":5
-         },
-         {
-            "title":"Report on how this brings us back to where we started",
-            "description":"You decide to write a piece on how the country is no better off now that the sanctuaries are gone than it was before the sanctuaries were implemented. The issue of homelessness still persists.",
-            "effectDesc":"Your tone is limited to below 50. Your popularity decreases by 5%",
-            "impacts":[
-               {
-                  "index":2,
-                  "limits":[
-                     null,
-                     50,
-                     null
-                  ]
-               }
-            ],
-            "popChange":-5
-         },
-         {
-            "title":"Report on ongoing protests and demand more of the government",
-            "description":"You decide to continue reporting on the protests and make a call-to-action for the government to do something about the out-of-control wealth inequality in America.",
-            "effectDesc":"Your sensationalism is limited to above 50. Your popularity increases by 5%.",
-            "impacts":[
-               {
-                  "index":3,
-                  "limits":[
-                     50,
-                     null,
-                     null
-                  ]
-               }
-            ],
-            "popChange":5
-         }
-      ]
-   },
-   {
-      "title":"New government reforms",
-      "description":"Following the protests and riots over the homeless sanctuaries, the federal government has passed a new bill to ensure large corporations and billionaires pay their taxes.",
-      "triggers":[
-         
-      ],
-      "choices":[
-         {
-            "title":"Report on the new reforms",
-            "description":"You decide to cover the contents of this new bill. With the huge influx of tax money from large corporations and billionaires, the government can fund new social programs to assist those below the poverty line.",
-            "effectDesc":"Your tone is limited to above 50. Your popularity increases by 15%.",
-            "impacts":[
-               {
-                  "index":2,
-                  "limits":[
-                     50,
-                     null,
-                     null
-                  ]
-               }
-            ],
-            "popChange":15
-         }
-      ]
-   }
+            "limits":[
+              null,
+              25,
+              null
+            ]
+          }
+        ],
+        "popChange":10
+      }
+    ]
+  },
+  {
+    "type": "story",
+    "storyNo": 10,
+    "storySeq": 10,
+    "title":"Government shuts down homeless sanctuaries",
+    "description":"After nationwide protests, the government has decided to stop funding and immediately close the homeless sanctuaries. Residents of the sanctuaries are back on the streets.",
+    "triggers":[
+
+    ],
+    "choices":[
+      {
+        "title":"Report on the freedom of the residents",
+        "description":"You decide to interview former sanctuary residents for an exclusive on their newfound freedom.",
+        "effectDesc":"Your tone is limited to above 25. Your popularity increases by 5%.",
+        "impacts":[
+          {
+            "index":2,
+            "limits":[
+              25,
+              null,
+              null
+            ]
+          }
+        ],
+        "popChange":5
+      },
+      {
+        "title":"Report on how this brings us back to where we started",
+        "description":"You decide to write a piece on how the country is no better off now that the sanctuaries are gone than it was before the sanctuaries were implemented. The issue of homelessness still persists.",
+        "effectDesc":"Your tone is limited to below 50. Your popularity decreases by 5%",
+        "impacts":[
+          {
+            "index":2,
+            "limits":[
+              null,
+              50,
+              null
+            ]
+          }
+        ],
+        "popChange":-5
+      },
+      {
+        "title":"Report on ongoing protests and demand more of the government",
+        "description":"You decide to continue reporting on the protests and make a call-to-action for the government to do something about the out-of-control wealth inequality in America.",
+        "effectDesc":"Your sensationalism is limited to above 50. Your popularity increases by 5%.",
+        "impacts":[
+          {
+            "index":3,
+            "limits":[
+              50,
+              null,
+              null
+            ]
+          }
+        ],
+        "popChange":5
+      }
+    ]
+  },
+  {
+    "type": "story",
+    "storyNo": 11,
+    "storySeq": 11,
+    "title":"New government reforms",
+    "description":"Following the protests and riots over the homeless sanctuaries, the federal government has passed a new bill to ensure large corporations and billionaires pay their taxes.",
+    "triggers":[
+
+    ],
+    "choices":[
+      {
+        "title":"Report on the new reforms",
+        "description":"You decide to cover the contents of this new bill. With the huge influx of tax money from large corporations and billionaires, the government can fund new social programs to assist those below the poverty line.",
+        "effectDesc":"Your tone is limited to above 50. Your popularity increases by 15%.",
+        "impacts":[
+          {
+            "index":2,
+            "limits":[
+              50,
+              null,
+              null
+            ]
+          }
+        ],
+        "popChange":15
+      }
+    ]
+  },
+
+  {
+    "type": "story",
+    "storyNo": 12,
+    "storySeq": 12,
+    "title": "Testament",
+    "description": "Your grandpa left you a message saying that he wants you to make the paper more national.",
+    "triggers": [
+    ],
+    "choices": [
+      {
+        "title": "Follow your grandfather's testament.",
+        "description": "You decide to listen to your grandfather's testament to develop a national newspaper.",
+        "effectDesc": "Your nationalization is limited to above 70.",
+        "impacts": [
+          {
+            "index": 4,
+            "limits": [70, null, null]
+          }
+        ],
+        "popChange": 0
+      },
+      {
+        "title": "Don't follow your grandfather's testament.",
+        "description": "You decide not to make your paper a national one.",
+        "effectDesc": "Your nationalization is limited to below 30.",
+        "impacts": [
+          {
+            "index": 4,
+            "limits": [null, 30, null]
+          }
+        ],
+        "popChange": 0
+      }
+    ]
+  },
+  {
+    "type": "story",
+    "storyNo": 13,
+    "storySeq": 13,
+    "title": "Opportunities for journalists development",
+    "description": "There is a chance for you to let your journalists join a lecture of a pioneer in journalism, do you want it or not?",
+    "triggers": [
+    ],
+    "choices": [
+      {
+        "title": "Accept the invitation",
+        "description": "You decide to let your journalists join the lecture.",
+        "effectDesc": "Your content is set to 100. Your syndication is limited below 25,Your popularity increases by 5%",
+        "impacts": [
+          {
+            "index": 1,
+            "limits": [null, null, 100]
+          },
+          {
+            "index": 1,
+            "limits": [
+              null,
+              25,
+              null
+            ]
+          }
+        ],
+        "popChange": 5
+      },
+      {
+        "title": "Refuse the invitation",
+        "description": "You decide to keep things the way they are",
+        "effectDesc": "",
+        "impacts": [
+        ],
+        "popChange": 0
+      }
+    ]
+  },
+  {
+    "type": "story",
+    "storyNo": 14,
+    "storySeq": 14,
+    "title": "New flu?",
+    "description": "Several flu patients with the same symptoms have been hospitalized recently.",
+    "triggers": [
+    ],
+    "choices": [
+      {
+        "title": "Claim that it might be a new flu.",
+        "description": "You decide to exaggerate what is happening now and say that a new flu appears in your town.",
+        "effectDesc": "Your journalism is limited to below 50. Your sensationalism is limited to above 75,Your popularity increases by 3%",
+        "impacts": [
+          {
+            "index": 0,
+            "limits": [null, 50, null]
+          },
+          {
+            "index": 3,
+            "limits": [75, null, null]
+          }
+        ],
+        "popChange": 3
+      },
+      {
+        "title": "Remind everyone of the temperature change",
+        "description": "You decide to remind readers of the temperature change instead of reporting the rising number of hospitalizations.",
+        "effectDesc": "Your popularity increases by 5%",
+        "impacts": [
+        ],
+        "popChange": 5
+      }
+    ]
+  },
+  {
+    "type": "story",
+    "storyNo": 15,
+    "storySeq": 15,
+    "title": "More and more people are getting the flu",
+    "description": "There are more and more people are getting the flu, but the mayor suggests the papers not to report the fact to reduce civil panic.",
+    "triggers": [
+    ],
+    "choices": [
+      {
+        "title": "Report the fact that there was an outbreak of the flu",
+        "description": "You decide to report fact that there was an outbreak of the flu, and exaggerate its seriousness.",
+        "effectDesc": "Your sensationalism is limited to above 60. Your journalism is limited to above 70. Your popularity increases by 10%",
+        "impacts": [
+          {
+            "index": 0,
+            "limits": [70, null, null]
+          },
+          {
+            "index": 4,
+            "limits": [60, null, null]
+          }
+        ],
+        "popChange": 10
+      },
+      {
+        "title": "Hide the fact that there was an outbreak of the flu",
+        "description": "You decide not to cover this fact, and draw the public's attention elsewhere.",
+        "effectDesc": "Your journalism is limited to below 40. Your popularity decreases by 5%",
+        "impacts": [
+          {
+            "index": 0,
+            "limits": [null, 40, null]
+          }
+        ],
+        "popChange": -5
+      }
+    ]
+  },
+  {
+    "type": "story",
+    "storyNo": 16,
+    "storySeq": 16,
+    "title": "People start hoarding supplies",
+    "description": "Because of the flu, some citizens start hoarding supplies of daily use.",
+    "triggers": [
+    ],
+    "choices": [
+      {
+        "title": "Urge citizens not to hoard supplies",
+        "description": "You decided to appeal to citizens not to hoard supplies.",
+        "effectDesc": "Your nationalization is limited to below 40. Your popularity increases by 5%",
+        "impacts": [
+          {
+            "index": 4,
+            "limits": [null, 40, null]
+          }
+        ],
+        "popChange": 5
+      },
+      {
+        "title": "Do not cover these local affairs",
+        "description": "You decide to focus on other issue.",
+        "effectDesc": "Your nationalization is limited to above 50. Your content is limited to above 50.",
+        "impacts": [
+          {
+            "index": 1,
+            "limits": [50, null, null]
+          },
+          {
+            "index": 4,
+            "limits": [50, null, null]
+          }
+        ],
+        "popChange": 0
+      }
+    ]
+  },
+  {
+    "type": "story",
+    "storyNo": 17,
+    "storySeq": 17,
+    "title": "Local flu situation",
+    "description": "Mayor hopes newspapers can keep reporting local flu situation and some local medical resources.",
+    "triggers": [
+    ],
+    "choices": [
+      {
+        "title": "Keep reporting news about local flu situation.",
+        "description": "You decided to Keep reporting the local situation of epidemic.",
+        "effectDesc": "Your nationalization is limited to below 30. Your content is limited to below 40. Your popularity increases by 5%",
+        "impacts": [
+          {
+            "index": 4,
+            "limits": [null, 30, null]
+          },
+          {
+            "index": 1,
+            "limits": [null, 40, null]
+          }
+        ],
+        "popChange": 5
+      },
+      {
+        "title": "Do not cover these local affairs",
+        "description": "You decide to focus on other issue.",
+        "effectDesc": "Your nationalization is limited to above 50. Your content is limited to above 50. Your popularity decreases by 5%",
+        "impacts": [
+          {
+            "index": 1,
+            "limits": [50, null, null]
+          },
+          {
+            "index": 4,
+            "limits": [50, null, null]
+          }
+        ],
+        "popChange": -5
+      }
+    ]
+  },
+  {
+    "type": "story",
+    "storyNo": 18,
+    "storySeq": 18,
+    "title": "Provide more entertainment news in epidemic time",
+    "description": "People are urged not to go out of their house, it seems a good time to provide more entertainment news for amusement.",
+    "triggers": [
+    ],
+    "choices": [
+      {
+        "title": "Provide more entertainment news",
+        "description": "You decide to carry out more entertainment news than ever.",
+        "effectDesc": "Your content is limited below 25. Your popularity increases by 5%.",
+        "impacts": [
+          {
+            "index": 1,
+            "limits": [null, 25, null]
+          }
+        ],
+        "popChange": 5
+      },
+      {
+        "title": "Don't change anything",
+        "description": "You decide to keep your style.",
+        "effectDesc": "Your popularity decreases by 5%.",
+        "impacts": [
+        ],
+        "popChange": -5
+      }
+    ]
+  },
+  {
+    "type": "story",
+    "storyNo": 19,
+    "storySeq": 19,
+    "title": "Vaccine",
+    "description": "Scientists successfully developed a kind of vaccine against the current flu.",
+    "triggers": [
+    ],
+    "choices": [
+      {
+        "title": "Report on the vaccine development.",
+        "description": "You report the news that the vaccine against this epidemic has been developed and people will no longer suffer from this flu.",
+        "effectDesc": "Your tone is limited to above 75. Your content is limited to above 50. Your popularity increases by 10%",
+        "impacts": [
+          {
+            "index": 2,
+            "limits": [75, null, null]
+          },
+          {
+            "index": 1,
+            "limits": [50, null, null]
+          }
+        ],
+        "popChange": 10
+      }
+    ]
+  },
+  {
+    "type": "story",
+    "storyNo": 20,
+    "storySeq": 20,
+    "title": "Cooperation",
+    "description": "Several newspapers are going to jointly publish some hot news and they also invite you.",
+    "triggers": [
+    ],
+    "choices": [
+      {
+        "title": "Participate in co-publish",
+        "description": "You decide to join the co-publish.",
+        "effectDesc": "Your syndication is limited to above 80. Your popularity increases by 5%.",
+        "impacts": [
+          {
+            "index": 5,
+            "limits": [80, null, null]
+          }
+        ],
+        "popChange": 5
+      },
+      {
+        "title": "Don't Participate in co-publish",
+        "description": "You decide not to join the co-publish and you will be repelled by other newspapers briefly.",
+        "effectDesc": "Your syndication is limited to below 10. Your popularity decreases by 5%.",
+        "impacts": [
+          {
+            "index": 5,
+            "limits": [null, 10, null]
+          }
+        ],
+        "popChange": -5
+      }
+    ]
+  },
+  {
+    "type": "story",
+    "storyNo": 21,
+    "storySeq": 21,
+    "title": "Celebrity gossip",
+    "description": "Recently, many celebrities' private lives have been exposed and these news may be eye-catching.",
+    "triggers": [
+    ],
+    "choices": [
+      {
+        "title": "Report gossips",
+        "description": "You decide to report those gossips of some movie stars.",
+        "effectDesc": "Your content is limited to below 30. Your popularity increases by 5%.",
+        "impacts": [
+          {
+            "index": 1,
+            "limits": [null, 30, null]
+          }
+        ],
+        "popChange": 5
+      },
+      {
+        "title": "Don't report gossips",
+        "description": "You decide not to report those gossips.",
+        "effectDesc": "Your content is limited to above 60.",
+        "impacts": [
+          {
+            "index": 1,
+            "limits": [60, null, null]
+          }
+        ],
+        "popChange": 0
+      }
+    ]
+  },
+  {
+    "type": "story",
+    "storyNo": 22,
+    "storySeq": 22,
+    "title": "More factories",
+    "description": "Nowadays, more and more factories are being built, they boosts the economy but are also polluting the environment.",
+    "triggers": [
+    ],
+    "choices": [
+      {
+        "title": "Denounce factories for polluting the environment",
+        "description": "You decide to condemn factories for polluting the environment.",
+        "effectDesc": "Your tone is limited to below 30. Your popularity increases by 5%.",
+        "impacts": [
+          {
+            "index": 2,
+            "limits": [null, 30, null]
+          }
+        ],
+        "popChange": 5
+      },
+      {
+        "title": "Support the constructions of factories",
+        "description": "You decide to depict the good future carried by industrial development.",
+        "effectDesc": "Your tone is limited to above 80. Your popularity increases by 2%.",
+        "impacts": [
+          {
+            "index": 2,
+            "limits": [80, null, null]
+          }
+        ],
+        "popChange": 2
+      }
+    ]
+  },
+  {
+    "type": "story",
+    "storyNo": 23,
+    "storySeq": 23,
+    "title": "Murder case",
+    "description": "There have been a number of murders in recent days, all seemingly committed by the same person. Your reporter accidentally gained access to the progress of the police investigation, which, if reported, could affect the operation of arresting the killer.",
+    "triggers": [
+    ],
+    "choices": [
+      {
+        "title": "Report the details of police investigation",
+        "description": "You decide to report the details of police investigation, including the evidence the police have and the direction of the investigation",
+        "effectDesc": "Your content is limited to above 50. Your journalism is limited to above 75. Your popularity increases by 10%.",
+        "impacts": [
+          {
+            "index": 0,
+            "limits": [75, null, null]
+          },
+          {
+            "index": 1,
+            "limits": [50, null, null]
+          }
+        ],
+        "popChange": 10
+      },
+      {
+        "title": "Don't report the details of police investigation",
+        "description": "You decide not to report the information your reporter gained.",
+        "effectDesc": "",
+        "impacts": [
+        ],
+        "popChange": 0
+      }
+    ]
+  },
+  {
+    "type": "story",
+    "storyNo": 24,
+    "storySeq": 24,
+    "title": "Help the police to catch the murderer",
+    "description": "The police ask you to report some fake news to deceive the murderer in order to arrest him.",
+    "triggers": [
+    ],
+    "choices": [
+      {
+        "title": "Help the police",
+        "description": "You decide to report those fake news.",
+        "effectDesc": "Your journalism is limited to below 10. Your popularity increases by 5%.",
+        "impacts": [
+          {
+            "index": 0,
+            "limits": [null, 10, null]
+          }
+        ],
+        "popChange": 5
+      },
+      {
+        "title": "Don't help the police",
+        "description": "You decide not to help the police to cover those fake news.",
+        "effectDesc": "",
+        "impacts": [
+        ],
+        "popChange": 0
+      }
+    ]
+  },
+  {
+    "type": "story",
+    "storyNo": 25,
+    "storySeq": 25,
+    "title": "Murderer was arrested",
+    "description": "The serial killer was eventually put in prison, which took the police more than a month.",
+    "triggers": [
+    ],
+    "choices": [
+      {
+        "title": "Thank the police for cracking a big case.",
+        "description": "You decide to praise the police for cracking the case and say life will be batter with those heroes.",
+        "effectDesc": "Your tone is limited to above 75. Your popularity increases by 2%.",
+        "impacts": [
+          {
+            "index": 2,
+            "limits": [75, null, null]
+          }
+        ],
+        "popChange": 2
+      },
+      {
+        "title": "Satirizing the inefficiency of the police",
+        "description": "You decide to satirize the inefficiency of the police, resulting in 2 more deaths.",
+        "effectDesc": "Your tone is limited to below 25. Your sensationalism is limited to above 70. Your popularity increases by 5%.",
+        "impacts": [
+          {
+            "index": 2,
+            "limits": [null, 25, null]
+          },
+          {
+            "index": 3,
+            "limits": [70, null, null]
+          }
+        ],
+        "popChange": 5
+      }
+    ]
+  },
+  {
+    "type": "story",
+    "storyNo": 26,
+    "storySeq": 26,
+    "title": "Celebrity scandal",
+    "description": "A scandal involving a star has come to light recently. And someone anonymously sent in some more dirt on the star. ",
+    "triggers": [
+    ],
+    "choices": [
+      {
+        "title": "Report those scandals.",
+        "description": "You decide to report those scandals without checking their authenticity.",
+        "effectDesc": "Your content is limited to below 25. Your journalism is limited to below 50. Your sensationalism is limited to above 50. Your popularity increases by 15%.",
+        "impacts": [
+          {
+            "index": 0,
+            "limits": [null, 50, null]
+          },
+          {
+            "index": 3,
+            "limits": [50, null, null]
+          },
+          {
+            "index": 1,
+            "limits": [null, 25, null]
+          }
+        ],
+        "popChange": 15
+      },
+      {
+        "title": "Only report information that is confirmed",
+        "description": "You decide to report those confirmed information.",
+        "effectDesc": "Your content is limited below 50. Your popularity increases by 5%.",
+        "impacts": [
+          {
+            "index": 1,
+            "limits": [null, 50, null]
+          }
+        ],
+        "popChange": 5
+      }
+    ]
+  },
+  {
+    "type": "story",
+    "storyNo": 27,
+    "storySeq": 27,
+    "title": "The Olympic Games",
+    "description": "The Olympic Games is coming, athletes went all out to win the gold medal.",
+    "triggers": [
+    ],
+    "choices": [
+      {
+        "title": "Report the Olympic Games",
+        "description": "You decide to use large section of newspaper to report news about the Olympic Games.",
+        "effectDesc": "Your nationalization is limited to above 75. Your tone is limited above 50. Your popularity increases by 5%.",
+        "impacts": [
+          {
+            "index": 4,
+            "limits": [75, null, null]
+          },
+          {
+            "index": 2,
+            "limits": [50, null, null]
+          }
+        ],
+        "popChange": 5
+      }
+    ]
+  },
+  {
+    "type": "story",
+    "storyNo": 28,
+    "storySeq": 28,
+    "title": "International diplomacy",
+    "description": "There have been many historic events in international diplomacy in recent days.",
+    "triggers": [
+    ],
+    "choices": [
+      {
+        "title": "Cover those events",
+        "description": "You decide to cover those international events.",
+        "effectDesc": "You nationalization is set to 100.",
+        "impacts": [
+          {
+            "index": 4,
+            "limits": [null, null, 100]
+          }
+        ],
+        "popChange": 0
+      },
+      {
+        "title": "Don't cover those events",
+        "description": "You decide not to report those international events.",
+        "effectDesc": "You nationalization is limited to below 50.",
+        "impacts": [
+          {
+            "index": 4,
+            "limits": [null, 50, null]
+          }
+        ],
+        "popChange": 0
+      }
+    ]
+  },
+  {
+    "type": "story",
+    "storyNo": 29,
+    "storySeq": 29,
+    "title": "Justice or life",
+    "description": "Recently, a citizen was killed to protect another woman who was being robbed.",
+    "triggers": [
+    ],
+    "choices": [
+      {
+        "title": "Approve of the act",
+        "description": "You praised the citizen and encouraged others to do the same.",
+        "effectDesc": "Your tone is limited to above 75.",
+        "impacts": [
+          {
+            "index": 2,
+            "limits": [75, null, null]
+          }
+        ],
+        "popChange": 0
+      },
+      {
+        "title": "Remain neutral",
+        "description": "You report the news without any comment.",
+        "effectDesc": "Your tone is set to 50.",
+        "impacts": [
+          {
+            "index": 2,
+            "limits": [null, null, 50]
+          }
+        ],
+        "popChange": 0
+      },
+      {
+        "title": "Oppose this behavior",
+        "description": "You strongly oppose this kind of behavior, saying that life is the most important thing.",
+        "effectDesc": "Your tone is limited to below 25.",
+        "impacts": [
+          {
+            "index": 2,
+            "limits": [null, 25, null]
+          }
+        ],
+        "popChange": 0
+      }
+    ]
+  },
+  {
+    "type": "story",
+    "storyNo": 30,
+    "storySeq": 30,
+    "title": "Typhoon is coming",
+    "description": "As a result of the typhoon, many areas of the country suffered disasters.",
+    "triggers": [
+    ],
+    "choices": [
+      {
+        "title": "Cover this natural disaster",
+        "description": "You decide to report on the damage across the country and ask everyone to help each other.",
+        "effectDesc": "Your nationalization is limited to above 75. Your popularity increases by 5%.",
+        "impacts": [
+          {
+            "index": 4,
+            "limits": [75, null, null]
+          }
+        ],
+        "popChange": 5
+      }
+    ]
+  }
 ]
