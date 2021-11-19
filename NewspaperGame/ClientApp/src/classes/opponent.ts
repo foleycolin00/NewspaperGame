@@ -6,7 +6,7 @@ import { Tools } from "./tools";
 export class Opponent {
   //Info
   name: string;
-  focus: number;
+  focus: number[];
   popularity: number;
   popChange: number = 0;
   rating: number;
@@ -38,30 +38,30 @@ export class Opponent {
 
     //Opponent 1
     //Classic local
-    o = new Opponent("The Raleigh Times", 0);
+    o = new Opponent("The Raleigh Times", [0, 1, 2]);
     o.popularity = 10;
-    o.sliders = [60, 80, 30, 30, 20, 70];
+    o.sliders = [60, 60, 60, 45, 40, 40];
     opps.push(o)
 
     //Opponent 1
     //Tabloid
-    o = new Opponent("Entertainment News", 3);
-    o.popularity = 40;
-    o.sliders = [10, 0, 75, 100, 75, 0];
+    o = new Opponent("Entertainment News", [2, 3, 4]);
+    o.popularity = 20;
+    o.sliders = [40, 40, 55, 60, 55, 40];
     opps.push(o)
 
     //Opponent 1
     //Negative National
-    o = new Opponent("Angry Rant News", 4);
-    o.popularity = 15;
-    o.sliders = [25, 75, 0, 75, 75, 15];
+    o = new Opponent("Angry Rant News", [3, 4, 5]);
+    o.popularity = 10;
+    o.sliders = [45, 45, 50, 60, 60, 60];
     opps.push(o)
 
     //Opponent 1
     //Really good national
-    o = new Opponent("National Press", 1);
-    o.popularity = 30;
-    o.sliders = [100, 80, 20, 40, 100,10];
+    o = new Opponent("National Press", [0, 1, 4]);
+    o.popularity = 20;
+    o.sliders = [60, 60, 40, 40, 60,40];
     opps.push(o)
 
     OpponentsComponent.opponents = opps;
@@ -80,9 +80,11 @@ export class Opponent {
       //Check what the rating would be for every change in sliders
       //Maximize the focus slider, so assuming you increase that one, what other options would increase your score?
       //loop through every option change for every slider, maybe by 5 or 10
-      if (this.focus == i) {
-        if (this.sliders[i] + this.slidersDeltaRight[i] >= this.slidersRight[i]) {
-          this.sliders[i] = Tools.TrimNumber(this.sliders[i] + this.slidersDeltaRight[i] * 2);
+      
+      if (this.focus.includes(i)) {
+        console.log(this.sliders[i] + this.slidersDeltaRight[i]);
+        if (this.sliders[i] + this.slidersDeltaRight[i] <= this.slidersRight[i]) {
+          this.sliders[i] = Tools.TrimNumber(this.sliders[i] + this.slidersDeltaRight[i]);
         }
       } else {
         if (this.sliders[i] - this.slidersDeltaLeft[i] >= this.slidersLeft[i]) {
@@ -92,7 +94,7 @@ export class Opponent {
 
     }
     //this.sliders = this.abMax(this.sliders, 6, 0)[0]
-    //console.log(this.name + ": " + this.sliders)
+    console.log(this.name + ": " + this.sliders);
   }
 
   //private abMax(opponentSliders, maxDepth=6, currentDepth): [number[], number] {
