@@ -31,24 +31,28 @@ var Opponent = /** @class */ (function () {
         o = new Opponent("The Raleigh Times", [0, 1, 2]);
         o.popularity = 10;
         o.sliders = [60, 60, 60, 45, 40, 40];
+        o.rating = 90;
         opps.push(o);
         //Opponent 1
         //Tabloid
         o = new Opponent("Entertainment News", [2, 3, 4]);
         o.popularity = 20;
         o.sliders = [40, 40, 55, 60, 55, 40];
+        o.rating = 76;
         opps.push(o);
         //Opponent 1
         //Negative National
         o = new Opponent("Angry Rant News", [3, 4, 5]);
         o.popularity = 10;
         o.sliders = [45, 45, 50, 60, 60, 60];
+        o.rating = 60;
         opps.push(o);
         //Opponent 1
         //Really good national
         o = new Opponent("National Press", [0, 1, 4]);
         o.popularity = 20;
         o.sliders = [60, 60, 40, 40, 60, 40];
+        o.rating = 98;
         opps.push(o);
         opponents_component_1.OpponentsComponent.opponents = opps;
         return opps;

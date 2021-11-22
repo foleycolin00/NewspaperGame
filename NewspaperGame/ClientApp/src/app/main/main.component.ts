@@ -28,7 +28,7 @@ export class MainComponent implements OnInit {
   invalidLimits: boolean[] = [false, false, false, false, false, false]
   popularity: number = 25;
   popularityChange: number = 0;
-  rating: number = this.getSlidersRating(this.sliders);
+  rating: number = this.getSlidersRating(this.sliders, 0);
   ratingChange: number = 0;
 
   tooltips = [
@@ -213,11 +213,11 @@ export class MainComponent implements OnInit {
     }
 
     //Calculate all of the ratings
-    let newRating = this.getSlidersRating(this.sliders);
+    let newRating = this.getSlidersRating(this.sliders, this.rating);
     this.ratingChange = newRating - this.rating;
     this.rating = newRating;
     for (let o of this.opponents) {
-      let newRating = this.getSlidersRating(o.sliders);
+      let newRating = this.getSlidersRating(o.sliders, o.rating);
       o.ratingChange = newRating - o.rating;
       o.rating = newRating;
     }
@@ -340,17 +340,18 @@ export class MainComponent implements OnInit {
     return Tools.getRatingString(rating);
   }
 
-  getSlidersRating(sliders) {
+  getSlidersRating(sliders, currentRating) {
     let ideal = [100, 100, 50, 0, 50, 100];
-    let weights = [1, 1, 2, 1, 2, 1];
+    let weights = [1, 1, 1, 1, 1, 1];
     //Get rating out of 600, with 600 being the lowest
     var rating = sliders.map((s, index) => Math.abs(s - ideal[index]) * weights[index]).reduce((p, c) => p + c);
     //Get out of 100, with 100 being the lowest
     rating = Math.round(rating / 6);
     //Get out of 100, with 100 being the highest
     rating = Math.abs(rating - 100);
+    rating += Math.round(rating - currentRating / 2)
     //Mathmatically, currently the highest rating you could get is an 88
-    rating = Math.round(rating/88*100);
+    //rating = Math.round(rating/88*100);
     return rating;
   }
 
