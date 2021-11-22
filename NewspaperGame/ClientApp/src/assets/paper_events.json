@@ -72,7 +72,7 @@
       {
         "title": "Become more cynical.",
         "description": "You decide to become a more cynical newspaper.",
-        "effectDesc": "Your tone will be limited to below 25",
+        "effectDesc": "Your tone will be limited to below -25",
         "impacts": [
           {
             "index": 2,
@@ -88,7 +88,7 @@
       {
         "title": "Become more positive",
         "description": "You decide to become a more positive newspaper.",
-        "effectDesc": "Your tone will be limited to above 75.",
+        "effectDesc": "Your tone will be limited to above 25.",
         "impacts": [
           {
             "index": 2,
@@ -132,7 +132,7 @@
       {
         "title": "Do not report on MedCo",
         "description": "You decide not to report on MedCo's faulty devices.",
-        "effectDesc": "Your tone will be limited to below 50.",
+        "effectDesc": "Your tone will be limited to below 0.",
         "impacts": [
           {
             "index": 2,
@@ -171,7 +171,7 @@
             "limits": [
               null,
               null,
-              0
+              50
             ]
           },
           {
@@ -196,7 +196,7 @@
       {
         "title": "Do not cover the food shortage",
         "description": "You decide not to report on climate change, the resulting crop failures, and the imminent food shortage.",
-        "effectDesc": "The public remains unaware of the incoming food shortage for the moment and is not educated on how climate change is causing the food shortage. Your tone will be limited to above 50.",
+        "effectDesc": "The public remains unaware of the incoming food shortage for the moment and is not educated on how climate change is causing the food shortage. Your tone will be limited to above 0.",
         "impacts": [
           {
             "index": 2,
@@ -224,12 +224,12 @@
       {
         "title": "Report on the homeless sanctuaries",
         "description": "With the increasing wealth gap in America, this seems like a step in the right direction.",
-        "effectDesc": "Your tone will be limited to above 25. Your nationalization will be limited to above 50. Your popularity will increase by 10%.",
+        "effectDesc": "Your tone will be limited to above 0. Your nationalization will be limited to above 50. Your popularity will increase by 10%.",
         "impacts": [
           {
             "index": 2,
             "limits": [
-              25,
+              0,
               null,
               null
             ]
@@ -260,7 +260,7 @@
       {
         "title": "Report on the increase in homeless sanctuaries",
         "description": "The success of the homeless sanctuaries in New York is a good omen for the future.",
-        "effectDesc": "Your tone will be limited to above 50. Your nationalization will be limited to above 50. Your popularity will increase by 5%.",
+        "effectDesc": "Your tone will be limited to above 0. Your nationalization will be limited to above 50. Your popularity will increase by 5%.",
         "impacts": [
           {
             "index": 2,
@@ -296,7 +296,7 @@
       {
         "title": "Report on the silence of the homeless sanctuaries",
         "description": "You decide to bring attention to the lack of Tweets and Instagram posts from inside the sanctuaries, hinting at a darker reality.",
-        "effectDesc": "Your tone is limited to below 50. Your nationalization is limited to above 50. Your popularity increases 5%.",
+        "effectDesc": "Your tone is limited to below 0. Your nationalization is limited to above 50. Your popularity increases 5%.",
         "impacts": [
           {
             "index": 2,
@@ -400,7 +400,7 @@
       {
         "title": "Cover the truth of the homeless sanctuaries",
         "description": "You expose the truth of the camps to the public and analyze what this means for the country.",
-        "effectDesc": "Researching the truth will cost you. Your journalism is limited to above 80. Your tone will be limited to below 50. Your popularity increases by 20%.",
+        "effectDesc": "Researching the truth will cost you. Your journalism is limited to above 80. Your tone will be limited to below 0. Your popularity increases by 20%.",
         "impacts": [
           {
             "index": 0,
@@ -452,7 +452,7 @@
       {
         "title": "Report on the protests",
         "description": "You decide to send a reporter to one of the nearby protests.",
-        "effectDesc": "The protest turned into a riot. Your tone is limited to below 25. Your journalism is limited to above 50. Your popularity increases by 10%.",
+        "effectDesc": "The protest turned into a riot. Your tone is limited to below -25. Your journalism is limited to above 50. Your popularity increases by 10%.",
         "impacts": [
           {
             "index": 0,
@@ -488,12 +488,12 @@
       {
         "title": "Report on the freedom of the residents",
         "description": "You decide to interview former sanctuary residents for an exclusive on their newfound freedom.",
-        "effectDesc": "Your tone is limited to above 25. Your popularity increases by 5%.",
+        "effectDesc": "Your tone is limited to above 0. Your popularity increases by 5%.",
         "impacts": [
           {
             "index": 2,
             "limits": [
-              25,
+              50,
               null,
               null
             ]
@@ -504,7 +504,7 @@
       {
         "title": "Report on how this brings us back to where we started",
         "description": "You decide to write a piece on how the country is no better off now that the sanctuaries are gone than it was before the sanctuaries were implemented. The issue of homelessness still persists.",
-        "effectDesc": "Your tone is limited to below 50. Your popularity decreases by 5%",
+        "effectDesc": "Your tone is limited to below 0. Your popularity decreases by 5%",
         "impacts": [
           {
             "index": 2,
@@ -548,7 +548,7 @@
       {
         "title": "Report on the new reforms",
         "description": "You decide to cover the contents of this new bill. With the huge influx of tax money from large corporations and billionaires, the government can fund new social programs to assist those below the poverty line.",
-        "effectDesc": "Your tone is limited to above 50. Your popularity increases by 15%.",
+        "effectDesc": "Your tone is limited to above 0. Your popularity increases by 15%.",
         "impacts": [
           {
             "index": 2,
@@ -617,7 +617,7 @@
             "limits": [ null, null, 100 ]
           },
           {
-            "index": 1,
+            "index": 5,
             "limits": [
               null,
               25,
@@ -836,7 +836,7 @@
       {
         "title": "Report on the vaccine development.",
         "description": "You report the news that the vaccine against this epidemic has been developed and people will no longer suffer from this flu.",
-        "effectDesc": "Your tone is limited to above 75. Your content is limited to above 50. Your popularity increases by 10%",
+        "effectDesc": "Your tone is limited to above 25. Your content is limited to above 50. Your popularity increases by 10%",
         "impacts": [
           {
             "index": 2,
@@ -933,7 +933,7 @@
       {
         "title": "Denounce factories for polluting the environment",
         "description": "You decide to condemn factories for polluting the environment.",
-        "effectDesc": "Your tone is limited to below 30. Your popularity increases by 5%.",
+        "effectDesc": "Your tone is limited to below -20. Your popularity increases by 5%.",
         "impacts": [
           {
             "index": 2,
@@ -945,7 +945,7 @@
       {
         "title": "Support the constructions of factories",
         "description": "You decide to depict the good future carried by industrial development.",
-        "effectDesc": "Your tone is limited to above 80. Your popularity increases by 2%.",
+        "effectDesc": "Your tone is limited to above 30. Your popularity increases by 2%.",
         "impacts": [
           {
             "index": 2,
@@ -1034,7 +1034,7 @@
       {
         "title": "Thank the police for cracking a big case.",
         "description": "You decide to praise the police for cracking the case and say life will be batter with those heroes.",
-        "effectDesc": "Your tone is limited to above 75. Your popularity increases by 2%.",
+        "effectDesc": "Your tone is limited to above 25. Your popularity increases by 2%.",
         "impacts": [
           {
             "index": 2,
@@ -1046,7 +1046,7 @@
       {
         "title": "Satirizing the inefficiency of the police",
         "description": "You decide to satirize the inefficiency of the police, resulting in 2 more deaths.",
-        "effectDesc": "Your tone is limited to below 25. Your sensationalism is limited to above 70. Your popularity increases by 5%.",
+        "effectDesc": "Your tone is limited to below -25. Your sensationalism is limited to above 70. Your popularity increases by 5%.",
         "impacts": [
           {
             "index": 2,
@@ -1116,7 +1116,7 @@
       {
         "title": "Report the Olympic Games",
         "description": "You decide to use large section of newspaper to report news about the Olympic Games.",
-        "effectDesc": "Your nationalization is limited to above 75. Your tone is limited above 50. Your popularity increases by 5%.",
+        "effectDesc": "Your nationalization is limited to above 75. Your tone is limited above 0. Your popularity increases by 5%.",
         "impacts": [
           {
             "index": 4,
@@ -1178,7 +1178,7 @@
       {
         "title": "Approve of the act",
         "description": "You praised the citizen and encouraged others to do the same.",
-        "effectDesc": "Your tone is limited to above 75.",
+        "effectDesc": "Your tone is limited to above 25.",
         "impacts": [
           {
             "index": 2,
@@ -1190,7 +1190,7 @@
       {
         "title": "Remain neutral",
         "description": "You report the news without any comment.",
-        "effectDesc": "Your tone is set to 50.",
+        "effectDesc": "Your tone is set to 0.",
         "impacts": [
           {
             "index": 2,
@@ -1202,7 +1202,7 @@
       {
         "title": "Oppose this behavior",
         "description": "You strongly oppose this kind of behavior, saying that life is the most important thing.",
-        "effectDesc": "Your tone is limited to below 25.",
+        "effectDesc": "Your tone is limited to below -25.",
         "impacts": [
           {
             "index": 2,
@@ -1303,7 +1303,7 @@
       {
         "title": "Support the dog's campaign",
         "description": "You write an article supporting Clifford's political campaign.",
-        "effectDesc": "Nationalization will be limited to below 25. Tone will be limited to above 50. Your popularity will increase by 10%.",
+        "effectDesc": "Nationalization will be limited to below 25. Tone will be limited to above 0. Your popularity will increase by 10%.",
         "impacts": [
           {
             "index": 2,

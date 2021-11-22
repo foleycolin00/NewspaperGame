@@ -78,7 +78,29 @@ export class Opponent {
   }
 
   shiftSliders(): void {
+    //Colin's Original Way
     for (let i = 0; i < this.sliders.length; i++) {
+      //Will shift this slider randomly based on shiftSliderPercentage
+      //Randomly shift left vs right
+      //Might change this later to "smarter" AI
+      if (this.sliders[i] > Public.slidersRight[i]) {
+        if (this.sliders[i] - this.slidersDeltaLeft[i] >= this.slidersLeft[i]) {
+          this.sliders[i] = Tools.TrimNumber(this.sliders[i] - this.slidersDeltaLeft[i]);
+        }
+      } else if (this.sliders[i] < Public.slidersLeft[i]) {
+        if (this.sliders[i] + this.slidersDeltaRight[i] >= this.slidersRight[i]) {
+          this.sliders[i] = Tools.TrimNumber(this.sliders[i] + this.slidersDeltaRight[i]);
+        }
+      } else if (Math.random() < .5) {
+        this.sliders[i] = Tools.TrimNumber(this.sliders[i] - this.slidersDeltaLeft[i]);
+      } else {
+        this.sliders[i] = Tools.TrimNumber(this.sliders[i] + this.slidersDeltaRight[i]);
+      }
+
+    }
+
+    //New Way
+    /*for (let i = 0; i < this.sliders.length; i++) {
       //Shifts the focus to the right and everything else to the left
       //Use the rating method to see what the rating would be.
       //Check what the rating would be for every change in sliders
@@ -98,7 +120,7 @@ export class Opponent {
 
     }
     //this.sliders = this.abMax(this.sliders, 6, 0)[0]
-    console.log(this.name + ": " + this.sliders);
+    console.log(this.name + ": " + this.sliders);*/
   }
 
   //private abMax(opponentSliders, maxDepth=6, currentDepth): [number[], number] {

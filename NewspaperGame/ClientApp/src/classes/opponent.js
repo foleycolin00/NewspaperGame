@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Opponent = void 0;
 var opponents_component_1 = require("../app/opponents/opponents.component");
 var newspaper_1 = require("./newspaper");
+var public_1 = require("./public");
 var tools_1 = require("./tools");
 var Opponent = /** @class */ (function () {
     function Opponent(name, focus) {
@@ -61,26 +62,50 @@ var Opponent = /** @class */ (function () {
         return new newspaper_1.Newspaper(date, this.sliders);
     };
     Opponent.prototype.shiftSliders = function () {
+        //Colin's Original Way
         for (var i = 0; i < this.sliders.length; i++) {
-            //Shifts the focus to the right and everything else to the left
-            //Use the rating method to see what the rating would be.
-            //Check what the rating would be for every change in sliders
-            //Maximize the focus slider, so assuming you increase that one, what other options would increase your score?
-            //loop through every option change for every slider, maybe by 5 or 10
-            if (this.focus.includes(i)) {
-                console.log(this.sliders[i] + this.slidersDeltaRight[i]);
-                if (this.sliders[i] + this.slidersDeltaRight[i] <= this.slidersRight[i]) {
-                    this.sliders[i] = tools_1.Tools.TrimNumber(this.sliders[i] + this.slidersDeltaRight[i]);
-                }
-            }
-            else {
+            //Will shift this slider randomly based on shiftSliderPercentage
+            //Randomly shift left vs right
+            //Might change this later to "smarter" AI
+            if (this.sliders[i] > public_1.Public.slidersRight[i]) {
                 if (this.sliders[i] - this.slidersDeltaLeft[i] >= this.slidersLeft[i]) {
                     this.sliders[i] = tools_1.Tools.TrimNumber(this.sliders[i] - this.slidersDeltaLeft[i]);
                 }
             }
+            else if (this.sliders[i] < public_1.Public.slidersLeft[i]) {
+                if (this.sliders[i] + this.slidersDeltaRight[i] >= this.slidersRight[i]) {
+                    this.sliders[i] = tools_1.Tools.TrimNumber(this.sliders[i] + this.slidersDeltaRight[i]);
+                }
+            }
+            else if (Math.random() < .5) {
+                this.sliders[i] = tools_1.Tools.TrimNumber(this.sliders[i] - this.slidersDeltaLeft[i]);
+            }
+            else {
+                this.sliders[i] = tools_1.Tools.TrimNumber(this.sliders[i] + this.slidersDeltaRight[i]);
+            }
+        }
+        //New Way
+        /*for (let i = 0; i < this.sliders.length; i++) {
+          //Shifts the focus to the right and everything else to the left
+          //Use the rating method to see what the rating would be.
+          //Check what the rating would be for every change in sliders
+          //Maximize the focus slider, so assuming you increase that one, what other options would increase your score?
+          //loop through every option change for every slider, maybe by 5 or 10
+          
+          if (this.focus.includes(i)) {
+            console.log(this.sliders[i] + this.slidersDeltaRight[i]);
+            if (this.sliders[i] + this.slidersDeltaRight[i] <= this.slidersRight[i]) {
+              this.sliders[i] = Tools.TrimNumber(this.sliders[i] + this.slidersDeltaRight[i]);
+            }
+          } else {
+            if (this.sliders[i] - this.slidersDeltaLeft[i] >= this.slidersLeft[i]) {
+              this.sliders[i] = Tools.TrimNumber(this.sliders[i] - this.slidersDeltaLeft[i]);
+            }
+          }
+    
         }
         //this.sliders = this.abMax(this.sliders, 6, 0)[0]
-        console.log(this.name + ": " + this.sliders);
+        console.log(this.name + ": " + this.sliders);*/
     };
     return Opponent;
 }());

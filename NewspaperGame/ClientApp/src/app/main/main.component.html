@@ -2,7 +2,7 @@
   <div>
     <button class="boxA" (click)="viewModal(rulesModal)">Rules</button>
     <div class="boxB" style="position: relative; float:right;">
-      Popularity: <b [ngClass]= "{ 'positive' : popularityChange > 0, 'negative' : popularityChange < 0 }"> {{popularity | number: '1.0-2'}}%</b>
+      Popularity: <b [ngClass]= "{ 'positive' : popularityChange > 0, 'negative' : popularityChange < 0 }"> {{popularity | number: '1.0-2'}}%</b> <br>
       Journalism Rating: <b [ngClass]="{ 'positive' : ratingChange > 0, 'negative' : ratingChange < 0 }">{{getLetterRating(rating)}}</b>
 </div>
     <header>Name of Newspaper</header>
@@ -42,9 +42,9 @@
       <div class="subsection">Tone: {{sliders[2] - 50}}</div>
       <input type="range" min="0" max="100" [(ngModel)]="sliders[2]" class="slider" (input)="sliderChange(2)">
       <div class="container">
-        <div [style.visibility]="limitLeft[2] != null ? 'visible' : 'hidden'" class="limit">Limit Left: {{limitLeft[2]}}</div>
-        <div [style.visibility]="limitRight[2] != null ? 'visible' : 'hidden'" class="limit">Limit Right: {{limitRight[2]}}</div>
-        <div [style.visibility]="limitSet[2] != null  ? 'visible' : 'hidden'" class="limit">Set Value: {{limitSet[2]}}</div>
+        <div [style.visibility]="limitLeft[2] != null ? 'visible' : 'hidden'" class="limit">Limit Left: {{limitLeft[2] - 50}}</div>
+        <div [style.visibility]="limitRight[2] != null ? 'visible' : 'hidden'" class="limit">Limit Right: {{limitRight[2] - 50}}</div>
+        <div [style.visibility]="limitSet[2] != null  ? 'visible' : 'hidden'" class="limit">Set Value: {{limitSet[2] - 50}}</div>
       </div>
       <div class="customtooltip">{{sliders[2]}}<br>{{getTooltipText(2)}}</div>
     </div>
@@ -137,4 +137,24 @@
 
 <ng-template #eventModal let-modal>
   <app-events></app-events>
+</ng-template>
+
+<ng-template #winnerModal let-modal>
+  <div class="modal-body global">
+    <div class="modal-background">
+      Congratulations! <br>
+      You have won the game and have made a sucessful and popular newspaper. <br>
+      You final Journalism Rating was a <b>{{getLetterRating(rating)}}</b> <br>
+      Refresh the page to play again or try to get a higher rating :)
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #loserModal let-modal>
+  <div class="modal-body global">
+    <div class="modal-background">
+      You have failed. Your newspaper reached zero popularity and was shut down.<br>
+      Refresh the page to try again
+    </div>
+  </div>
 </ng-template>

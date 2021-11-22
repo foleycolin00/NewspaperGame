@@ -13,11 +13,15 @@ import { EventsComponent } from '../events/events.component';
 })
 export class MainComponent implements OnInit {
   @ViewChild('introModal', { static: true }) introModal: TemplateRef<any>;
+  @ViewChild('winnerModal', { static: true }) winnerModal: TemplateRef<any>;
+  @ViewChild('loserModal', { static: true }) loserModal: TemplateRef<any>;
 
   date: Date;
   newspapers: Newspaper[];
   opponents: Opponent[];
-  
+
+  storylines: number[] = [1, 1, 1, 1, 1]
+  usedEvents: string[] = []
   sliders: number[] = [50, 50, 50, 50, 50, 50];
   costs: number[] = [50, 50, 50, 50, 50, 50];
   budget: number = 2000;
@@ -245,12 +249,27 @@ export class MainComponent implements OnInit {
     this.limitRight = [null, null, null, null, null, null];
     this.limitSet = [null, null, null, null, null, null];
 
-    //Get an event
-    this.viewEvent();
+    //Check if you have won
+    if (this.popularity >= 100) {
+      this.winner()
+    } else if (this.popularity <= 0) {
+      this.loser()
+    } else {
+      //Get an event
+      this.viewEvent();
+    }
   }
 
   viewModal(content) {
     this.modalService.open(content, { size: 'xl' });
+  }
+
+  winner() {
+    this.modalService.open(this.winnerModal, { backdrop: 'static', keyboard: false, size: 'xl' });
+  }
+
+  loser() {
+    this.modalService.open(this.loserModal, { backdrop: 'static', keyboard: false, size: 'xl' });
   }
 
   viewEvent() {
@@ -260,6 +279,8 @@ export class MainComponent implements OnInit {
     modalRef.componentInstance.limitSet = this.limitSet;
     modalRef.componentInstance.sliders = this.sliders;
     modalRef.componentInstance.popularity = this.popularity;
+    modalRef.componentInstance.storylines = this.storylines;
+    modalRef.componentInstance.usedEvents = this.usedEvents;
     modalRef.result.then((result) => {
       this.popularity += result;
       for (let i = 0; i < this.sliders.length; i++) {

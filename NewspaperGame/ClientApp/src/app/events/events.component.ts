@@ -12,61 +12,24 @@ import { OpponentsComponent } from '../opponents/opponents.component';
 export class EventsComponent implements OnInit {
   @ViewChild('loadingModal', { static: true }) loadingModal: TemplateRef<any>;
   //Ignore any warnings from here
-  @Input() public limitRight: number[];
-  @Input() public limitLeft: number[];
-  @Input() public limitSet: number[];
-  @Input() public sliders: number[];
-  @Input() public popularity: number;
+  @Input() public limitRight: number[]
+  @Input() public limitLeft: number[]
+  @Input() public limitSet: number[]
+  @Input() public sliders: number[]
+  @Input() public popularity: number
+  @Input() public storylines: number[]
+  @Input() public usedEvents: string[]
 
   events: any[]
 
-  eventsTemp = [{
-  title: "County Fair",
-    description: "The local county fair is this week! Would you be able to cover some of the festivities? -The Mayor",
-      triggers: [ //An array of the triggers, there does not need to be any triggers for this, so if it is a general event leave it blank, but it could be triggered if a certain slider is in a certain range ir parent reacting to news is too negative
-        {
-          index: 0, //index of the slider, JOURNALISM is 0, content is 1, etc
-          rangeMin: 0, //range for everything is 0-100
-          rangeMax: 100
-        },
-      ],
-        choices: [ //You can have between 1 (a forced choice) and 3 choices in this array
-          {
-            title: "Cover the Fair",
-            description: "You decide to cover the fair in its entirety for the good of the town.",
-            effectDesc: "Your popularity will increased by 10%, content will be limited to below 25 and your nationalization will be set to 0.",
-            impacts: [
-              {
-                index: 4,
-                limits: [null, null, 0]//limits left right and set (set is the value HAS to be that exact value)
-              },
-              {
-                index: 1,
-                limits: [null, 25, null]//limits left right and set (set is the value HAS to be that exact value)
-              }
-            ],
-	          popChange: 10 //10% increase popularity
-          },
-          {
-            title: "Don't cover the fair",
-            description: "You decide that there are better things to do than to cover the fair, but there are no local stories to cover in the meantime.",
-            effectDesc: "Your popularity will decrease by 20% and your nationalization will be set to 100.",
-            impacts: [
-              {
-                index: 4,
-                limits: [null, null, 100]//limits left right and set
-              }
-            ],
-	          popChange: -20 //10% increase popularity
-          }
-        ]
-}]
-
-  chosenEvent: any = this.eventsTemp[0]
+  chosenEvent: any
 
   constructor(public activeModal: NgbActiveModal, private httpClient: HttpClient, private modalService: NgbModal) { }
 
   compatibleEvent(e: any): boolean {
+    if (e.storyNo != null && e.storySeq != this.storylines[e.storyNo]) {
+      return false;
+    }
     e.triggers.forEach((trigger) => {
       if (this.sliders[trigger.index] < trigger.rangeMin) {
         return false;
@@ -85,10 +48,10 @@ export class EventsComponent implements OnInit {
       this.events = data as any;
       //Choose an event
       //could be based on the sliders, or public
-      let compatibleEvents = this.events.filter(e => this.compatibleEvent(e));
+      let compatibleEvents = this.events.filter(e => this.usedEvents.filter(f => f == e.title).length == 0 && this.compatibleEvent(e));
       this.chosenEvent = compatibleEvents[Math.floor(Math.random() * (compatibleEvents.length))];
       //Remove the event
-      this.events = this.events.filter(e => e.title != this.chosenEvent.title);
+      this.usedEvents.push(this.chosenEvent.title)
 
       loadingModal.close();
     });
