@@ -2,6 +2,6 @@
 
 How to deploy?
 
-Go into /clientApp
-ng build --prod
+Go into /clientApp <br>
+ng build --prod <br>
 firebase deploy
