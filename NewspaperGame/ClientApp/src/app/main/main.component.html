@@ -5,11 +5,11 @@
       Popularity: <b [ngClass]= "{ 'positive' : popularityChange > 0, 'negative' : popularityChange < 0 }"> {{popularity | number: '1.0-2'}}%</b> <br>
       Journalism Rating: <b [ngClass]="{ 'positive' : ratingChange > 0, 'negative' : ratingChange < 0 }">{{getLetterRating(rating)}}</b>
 </div>
-    <header>Name of Newspaper</header>
+    <header>The Carolina Chronicle</header>
     
   </div>
 
-  <div class="subhead">York, MA - {{date.toDateString()}}</div>
+  <div class="subhead">Bryson City, NC - {{date.toDateString()}}</div>
 
   <div class="subsection">Budget Remaining: ${{budgetRemaining}}</div>
 
